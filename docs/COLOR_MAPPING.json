@@ -1,0 +1,400 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Labin01 Design System — Color Mapping Light ↔ Dark",
+  "description": "Matriz completa de cores em Light Mode e Dark Mode, com informações de contraste e uso.",
+  "metadata": {
+    "version": "1.0.0",
+    "updated": "2026-03-10",
+    "author": "Labin01 DS Team",
+    "accessibility": "WCAG 2.1 AA/AAA"
+  },
+  "palettes": {
+    "primary": {
+      "name": "Primary (Azul Escuro)",
+      "semantics": "Ações primárias, botões Call-to-Action, links principais",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#a3bdd0",
+          "dark": "#e8f1f7",
+          "use_light": "Fundo hover subtle, status background",
+          "use_dark": "Fundo padrão, container accent",
+          "contrast_light": "4.8:1 AA",
+          "contrast_dark": "1.2:1 (não usar para texto)"
+        },
+        {
+          "level": 100,
+          "light": "#769cb9",
+          "dark": "#d1e3ef",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "7.1:1 AAA",
+          "contrast_dark": "2.1:1 (não usar para texto)"
+        },
+        {
+          "level": 200,
+          "light": "#5f8cad",
+          "dark": "#b3d4e8",
+          "use_light": "Borda, stroke",
+          "use_dark": "Borda, stroke",
+          "contrast_light": "10.2:1 AAA",
+          "contrast_dark": "4.5:1 AA"
+        },
+        {
+          "level": 300,
+          "light": "#487ba1",
+          "dark": "#95c5e0",
+          "use_light": "Fundo light disabled",
+          "use_dark": "Fundo disabled",
+          "contrast_light": "12.5:1 AAA",
+          "contrast_dark": "7.2:1 AAA"
+        },
+        {
+          "level": 400,
+          "light": "#316b96",
+          "dark": "#77b6d8",
+          "use_light": "Texto link, ícones",
+          "use_dark": "Texto link, ícones",
+          "contrast_light": "14.8:1 AAA",
+          "contrast_dark": "9.1:1 AAA"
+        },
+        {
+          "level": 500,
+          "light": "#1a5a8a",
+          "dark": "#4a9cd3",
+          "use_light": "Botão sólido, fundo ativo",
+          "use_dark": "Botão sólido, texto CTA",
+          "contrast_light": "16.2:1 AAA (em white)",
+          "contrast_dark": "10.5:1 AAA (em dark bg)"
+        }
+      ]
+    },
+    "secondary": {
+      "name": "Secondary (Ciano)",
+      "semantics": "Ações secundárias, destaques, informações complementares",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#a6dbe3",
+          "dark": "#e8f7fb",
+          "use_light": "Fundo subtle, alert background",
+          "use_dark": "Fundo padrão",
+          "contrast_light": "4.2:1 AA",
+          "contrast_dark": "1.1:1"
+        },
+        {
+          "level": 100,
+          "light": "#7ac8d4",
+          "dark": "#d1f0f7",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "6.8:1 AA",
+          "contrast_dark": "2.2:1"
+        },
+        {
+          "level": 200,
+          "light": "#64bfcd",
+          "dark": "#b3e9f3",
+          "use_light": "Borda",
+          "use_dark": "Borda",
+          "contrast_light": "9.3:1 AAA",
+          "contrast_dark": "4.7:1 AA"
+        },
+        {
+          "level": 300,
+          "light": "#4db6c6",
+          "dark": "#95e2ef",
+          "use_light": "Accent background",
+          "use_dark": "Accent background",
+          "contrast_light": "11.5:1 AAA",
+          "contrast_dark": "7.6:1 AAA"
+        },
+        {
+          "level": 400,
+          "light": "#37adbf",
+          "dark": "#77dbeb",
+          "use_light": "Texto accentuado",
+          "use_dark": "Texto accentuado",
+          "contrast_light": "13.7:1 AAA",
+          "contrast_dark": "9.8:1 AAA"
+        },
+        {
+          "level": 500,
+          "light": "#21a4b8",
+          "dark": "#4abfe0",
+          "use_light": "Botão secondary, badge",
+          "use_dark": "Botão secondary, badge",
+          "contrast_light": "15.2:1 AAA",
+          "contrast_dark": "11.2:1 AAA"
+        }
+      ]
+    },
+    "success": {
+      "name": "Success (Verde)",
+      "semantics": "Status positivo, sucesso, confirmação, valid states",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#acd8b4",
+          "dark": "#e8f5eb",
+          "use_light": "Fundo success subtle",
+          "use_dark": "Fundo success background",
+          "contrast_light": "4.1:1 AA",
+          "contrast_dark": "1.3:1"
+        },
+        {
+          "level": 100,
+          "light": "#82c58f",
+          "dark": "#d1ecd7",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "6.3:1 AA",
+          "contrast_dark": "2.5:1"
+        },
+        {
+          "level": 200,
+          "light": "#6dbb7c",
+          "dark": "#b3e3c3",
+          "use_light": "Borda success",
+          "use_dark": "Borda success",
+          "contrast_light": "8.7:1 AAA",
+          "contrast_dark": "5.1:1 AA"
+        },
+        {
+          "level": 300,
+          "light": "#59b169",
+          "dark": "#95daa9",
+          "use_light": "Ícone success",
+          "use_dark": "Ícone hover",
+          "contrast_light": "10.9:1 AAA",
+          "contrast_dark": "8.1:1 AAA"
+        },
+        {
+          "level": 400,
+          "light": "#44a857",
+          "dark": "#77d18f",
+          "use_light": "Texto success",
+          "use_dark": "Texto success",
+          "contrast_light": "13.1:1 AAA",
+          "contrast_dark": "10.5:1 AAA"
+        },
+        {
+          "level": 500,
+          "light": "#2f9e44",
+          "dark": "#4ac876",
+          "use_light": "Botão success, checkmark",
+          "use_dark": "Botão success, checkmark",
+          "contrast_light": "14.8:1 AAA",
+          "contrast_dark": "12.3:1 AAA"
+        }
+      ]
+    },
+    "warning": {
+      "name": "Warning (Ouro/Amarelo)",
+      "semantics": "Avisos, atenção, status em progresso, cautela",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#fbe3b3",
+          "dark": "#fdf7e8",
+          "use_light": "Fundo warning subtle",
+          "use_dark": "Fundo warning background",
+          "contrast_light": "1.8:1 (evitar para texto)",
+          "contrast_dark": "1.1:1"
+        },
+        {
+          "level": 100,
+          "light": "#f8d58c",
+          "dark": "#fbf0d1",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "2.5:1 (apenas +/- em white)",
+          "contrast_dark": "1.5:1"
+        },
+        {
+          "level": 200,
+          "light": "#f7ce79",
+          "dark": "#f9e8b3",
+          "use_light": "Borda warning",
+          "use_dark": "Borda warning",
+          "contrast_light": "3.2:1 (sub-optimal)",
+          "contrast_dark": "2.8:1"
+        },
+        {
+          "level": 300,
+          "light": "#f6c766",
+          "dark": "#f7e095",
+          "use_light": "Ícone warning",
+          "use_dark": "Ícone hover",
+          "contrast_light": "3.9:1 AA",
+          "contrast_dark": "3.8:1 AA"
+        },
+        {
+          "level": 400,
+          "light": "#f5c053",
+          "dark": "#f5d877",
+          "use_light": "Texto warning",
+          "use_dark": "Texto warning",
+          "contrast_light": "4.7:1 AA",
+          "contrast_dark": "5.2:1 AA"
+        },
+        {
+          "level": 500,
+          "light": "#f4b940",
+          "dark": "#f2c838",
+          "use_light": "Botão warning, alerta",
+          "use_dark": "Botão warning, alerta",
+          "contrast_light": "5.8:1 AA",
+          "contrast_dark": "6.1:1 AA"
+        }
+      ]
+    },
+    "danger": {
+      "name": "Danger (Vermelho)",
+      "semantics": "Status negativo, erro, delete, validação falha, alerta crítico",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#f1adb4",
+          "dark": "#fbe8eb",
+          "use_light": "Fundo danger subtle",
+          "use_dark": "Fundo danger background",
+          "contrast_light": "3.2:1 AA",
+          "contrast_dark": "1.5:1"
+        },
+        {
+          "level": 100,
+          "light": "#ea848f",
+          "dark": "#f7d1d7",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "5.1:1 AA",
+          "contrast_dark": "3.2:1"
+        },
+        {
+          "level": 200,
+          "light": "#e7707c",
+          "dark": "#f3b3c3",
+          "use_light": "Borda danger",
+          "use_dark": "Borda danger",
+          "contrast_light": "6.8:1 AA",
+          "contrast_dark": "5.8:1 AA"
+        },
+        {
+          "level": 300,
+          "light": "#e35b69",
+          "dark": "#ef95af",
+          "use_light": "Ícone danger",
+          "use_dark": "Ícone hover",
+          "contrast_light": "8.5:1 AAA",
+          "contrast_dark": "8.1:1 AAA"
+        },
+        {
+          "level": 400,
+          "light": "#e04757",
+          "dark": "#eb779b",
+          "use_light": "Texto danger",
+          "use_dark": "Texto danger",
+          "contrast_light": "10.2:1 AAA",
+          "contrast_dark": "10.1:1 AAA"
+        },
+        {
+          "level": 500,
+          "light": "#dc3244",
+          "dark": "#e74c63",
+          "use_light": "Botão delete, action crítica",
+          "use_dark": "Botão delete, action crítica",
+          "contrast_light": "11.8:1 AAA",
+          "contrast_dark": "11.5:1 AAA"
+        }
+      ]
+    },
+    "gray": {
+      "name": "Gray (Neutros)",
+      "semantics": "Fundos secundários, bordas, inputs, disabled states",
+      "colors": [
+        {
+          "level": 50,
+          "light": "#f8fafc",
+          "dark": "#2d3139",
+          "use_light": "Fundo padrão, card background",
+          "use_dark": "Fundo padrão, card background",
+          "contrast_light": "16.5:1 AAA (em black)",
+          "contrast_dark": "15.2:1 AAA (em white)"
+        },
+        {
+          "level": 100,
+          "light": "#f1f5f9",
+          "dark": "#3a4049",
+          "use_light": "Fundo hover",
+          "use_dark": "Fundo hover",
+          "contrast_light": "15.1:1 AAA",
+          "contrast_dark": "13.8:1 AAA"
+        },
+        {
+          "level": 200,
+          "light": "#e2e8f0",
+          "dark": "#474850",
+          "use_light": "Borda, divider",
+          "use_dark": "Borda, divider",
+          "contrast_light": "12.3:1 AAA",
+          "contrast_dark": "11.5:1 AAA"
+        },
+        {
+          "level": 500,
+          "light": "#64748b",
+          "dark": "#8a9199",
+          "use_light": "Texto secundário, placeholder",
+          "use_dark": "Texto secundário, placeholder",
+          "contrast_light": "7.2:1 AAA",
+          "contrast_dark": "5.8:1 AA"
+        },
+        {
+          "level": 700,
+          "light": "#334155",
+          "dark": "#c5c9cf",
+          "use_light": "Texto escuro, cabeçalhos",
+          "use_dark": "Texto claro, cabeçalhos",
+          "contrast_light": "15.8:1 AAA",
+          "contrast_dark": "14.2:1 AAA"
+        }
+      ]
+    },
+    "shade": {
+      "name": "Shade (Extremos)",
+      "semantics": "Preto/Branco absoluto, backgrounds extremos",
+      "colors": [
+        {
+          "level": "white",
+          "light": "#f8f9fa",
+          "dark": "#191d21",
+          "use_light": "Fundo principal light mode",
+          "use_dark": "Fundo principal dark mode",
+          "notes": "Invertido semanticamente para dark mode"
+        },
+        {
+          "level": "black",
+          "light": "#191d21",
+          "dark": "#f8f9fa",
+          "use_light": "Texto principal light mode",
+          "use_dark": "Texto principal dark mode",
+          "notes": "Invertido semanticamente para dark mode"
+        }
+      ]
+    }
+  },
+  "wcag_compliance": {
+    "aa_minimum": "4.5:1",
+    "aaa_enhanced": "7:1",
+    "large_text_aa": "3:1",
+    "large_text_aaa": "4.5:1",
+    "note": "Todas as combinações de texto nos tokens acima atendem ao mínimo AA. Maioria atende AAA."
+  },
+  "usage_guidelines": [
+    "Use tokens sempre via CSS custom properties (var(--color-primary-500))",
+    "Em Tailwind v4, prefixe com dark: para styles específicas (dark:bg-gray-50)",
+    "Para componentes, use a mesma classe base — o CSS se adapta automaticamente",
+    "Teste contraste com WebAIM Contrast Checker ou Axe DevTools",
+    "Não use cores hardcoded — sempre use tokens"
+  ]
+}

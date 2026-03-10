@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dark Mode Guide — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        --primary-50: #a3bdd0;
+        --primary-100: #769cb9;
+        --primary-300: #487ba1;
+        --primary-500: #1a5a8a;
+
+        --secondary-50: #a6dbe3;
+        --secondary-500: #21a4b8;
+
+        --success-50: #acd8b4;
+        --success-500: #2f9e44;
+
+        --warning-50: #fbe3b3;
+        --warning-500: #f4b940;
+
+        --danger-50: #f1adb4;
+        --danger-500: #dc3244;
+
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
+        --shadow-sm: 0 1px 2px 0 rgba(25, 29, 33, 0.08);
+        --shadow-md: 0 4px 8px 0 rgba(25, 29, 33, 0.1);
+        --shadow-lg: 0 8px 24px 0 rgba(25, 29, 33, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --black: #f8f9fa;
+          --white: #191d21;
+          --gray50: #2d3139;
+          --gray100: #3a4049;
+          --gray200: #474850;
+          --gray500: #8a9199;
+          --gray700: #c5c9cf;
+
+          --primary-50: #e8f1f7;
+          --primary-100: #d1e3ef;
+          --primary-300: #95c5e0;
+          --primary-500: #4a9cd3;
+
+          --secondary-50: #e8f7fb;
+          --secondary-500: #4abfe0;
+
+          --success-50: #e8f5eb;
+          --success-500: #4ac876;
+
+          --warning-50: #fdf7e8;
+          --warning-500: #f2c838;
+
+          --danger-50: #fbe8eb;
+          --danger-500: #e74c63;
+
+          --shadow-sm: 0 1px 2px 0 rgba(248, 249, 250, 0.08);
+          --shadow-md: 0 4px 8px 0 rgba(248, 249, 250, 0.1);
+          --shadow-lg: 0 8px 24px 0 rgba(248, 249, 250, 0.12);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--white);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .ds-header {
+        background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 100%);
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: var(--white);
+        margin-bottom: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ds-header .header-left h1 {
+        font-family: var(--font-h);
+        font-size: 32px;
+        font-weight: 800;
+        margin-top: 8px;
+      }
+
+      .ds-header .header-left p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .ds-header .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 8px;
+      }
+
+      .theme-toggle {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--white);
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .section {
+        background: var(--gray50);
+        border: 1px solid var(--gray200);
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 32px;
+      }
+
+      .section-title {
+        font-family: var(--font-h);
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--black);
+      }
+
+      .section-desc {
+        font-size: 14px;
+        color: var(--gray500);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .color-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.2s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .color-card {
+          background: var(--gray100);
+        }
+      }
+
+      .color-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .color-swatch {
+        height: 120px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .color-info {
+        padding: 12px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .color-info .color-name {
+        font-weight: 600;
+        color: var(--black);
+      }
+
+      .color-info .color-hex {
+        color: var(--gray500);
+        font-family: var(--font-m);
+        margin-top: 4px;
+      }
+
+      .components-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .component-box {
+        background: var(--gray100);
+        border: 1px solid var(--gray200);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .component-box {
+          background: #1a1d20;
+          border: 1px solid var(--gray200);
+        }
+      }
+
+      .component-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--gray500);
+        margin-bottom: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-bottom: 8px;
+        margin-right: 8px;
+      }
+
+      .btn-primary {
+        background: var(--primary-500);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: var(--secondary-50);
+        color: var(--primary-500);
+        border: 1px solid var(--primary-300);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-100);
+      }
+
+      .btn-danger {
+        background: var(--danger-500);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        opacity: 0.9;
+      }
+
+      .input-group {
+        margin-bottom: 16px;
+      }
+
+      .input-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--black);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--gray200);
+        border-radius: 6px;
+        font-family: var(--font-s);
+        font-size: 14px;
+        background: white;
+        color: var(--black);
+        transition: all 0.2s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        input,
+        textarea {
+          background: var(--gray100);
+          border-color: var(--gray200);
+          color: var(--black);
+        }
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary-500);
+        box-shadow: 0 0 0 3px rgba(26, 90, 138, 0.1);
+      }
+
+      .alert {
+        padding: 12px 16px;
+        border-radius: 6px;
+        border-left: 4px solid;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .alert-success {
+        background: var(--success-50);
+        border-left-color: var(--success-500);
+        color: var(--primary-500);
+      }
+
+      .alert-warning {
+        background: var(--warning-50);
+        border-left-color: var(--warning-500);
+        color: var(--black);
+      }
+
+      .alert-danger {
+        background: var(--danger-50);
+        border-left-color: var(--danger-500);
+        color: var(--primary-500);
+      }
+
+      .code-block {
+        background: var(--gray100);
+        border: 1px solid var(--gray200);
+        border-radius: 8px;
+        padding: 16px;
+        font-family: var(--font-m);
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--black);
+        overflow-x: auto;
+        margin: 16px 0;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .code-block {
+          background: #1a1d20;
+          border-color: var(--gray200);
+        }
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        margin: 16px 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      table th {
+        background: var(--gray100);
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid var(--gray200);
+        color: var(--black);
+      }
+
+      table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--gray200);
+        color: var(--black);
+      }
+
+      table tr:hover {
+        background: var(--gray50);
+      }
+
+      .comparison-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid var(--gray200);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 16px 0;
+      }
+
+      .comparison-light,
+      .comparison-dark {
+        padding: 24px;
+        text-align: center;
+      }
+
+      .comparison-light {
+        background: white;
+        border-right: 1px solid var(--gray200);
+      }
+
+      .comparison-dark {
+        background: #191d21;
+        color: #f8f9fa;
+      }
+
+      .comparison-title {
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+        opacity: 0.7;
+      }
+
+      .comparison-content {
+        padding: 32px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 32px 0;
+        border-top: 1px solid var(--gray200);
+        margin-top: 64px;
+        color: var(--gray500);
+        font-size: 13px;
+      }
+
+      .footer a {
+        color: var(--primary-500);
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-right: 4px;
+        margin-bottom: 4px;
+      }
+
+      .badge-success {
+        background: var(--success-50);
+        color: var(--success-500);
+      }
+
+      .badge-warning {
+        background: var(--warning-50);
+        color: var(--primary-500);
+      }
+
+      .badge-info {
+        background: var(--primary-50);
+        color: var(--primary-500);
+      }
+
+      @media (max-width: 768px) {
+        .ds-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .comparison-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .comparison-light {
+          border-right: none;
+          border-bottom: 1px solid var(--gray200);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ds-header">
+      <div class="header-left">
+        <div class="label">🌙 Design System</div>
+        <h1>Dark Mode Guide</h1>
+        <p>Implementação moderna de Dark Mode no Labin01 DS com suporte a alternância automática e manual.</p>
+      </div>
+      <button class="theme-toggle" onclick="alert('Toggle funciona em projetos Next.js/React com theme-provider.ts')">
+        🌙 Toggle Theme
+      </button>
+    </div>
+
+    <!-- Seção 1: Visão Geral -->
+    <div class="section">
+      <div class="section-title">Visão Geral</div>
+      <div class="section-desc">Meta: Oferecer tema escuro moderno, acessível (WCAG AAA) e performático</div>
+
+      <div class="comparison-panel">
+        <div class="comparison-light">
+          <div class="comparison-title">☀️ Light Mode</div>
+          <div class="comparison-content">Padrão</div>
+        </div>
+        <div class="comparison-dark">
+          <div class="comparison-title">🌙 Dark Mode</div>
+          <div class="comparison-content">Novo</div>
+        </div>
+      </div>
+
+      <div class="component-box" style="margin-top: 24px">
+        <div class="component-label">Características</div>
+        <ul style="list-style: none; line-height: 1.8">
+          <li>✅ Detecção automática (prefers-color-scheme)</li>
+          <li>✅ Alternância manual com localStorage</li>
+          <li>✅ Transições suaves (300ms)</li>
+          <li>✅ Contraste WCAG AA/AAA em ambos os temas</li>
+          <li>✅ Zero breaking changes</li>
+          <li>✅ Reutiliza mesmos tokens CSS</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Seção 2: Paleta de Cores -->
+    <div class="section">
+      <div class="section-title">Paleta de Cores — Comparação</div>
+      <div class="section-desc">Cada cor tem duas variantes otimizadas: Light Mode e Dark Mode</div>
+
+      <div class="color-grid">
+        <!-- Primary -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #1a5a8a">primary-500</div>
+          <div class="color-info">
+            <div class="color-name">Primary Light</div>
+            <div class="color-hex">#1a5a8a</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #4a9cd3">primary-500-dark</div>
+          <div class="color-info">
+            <div class="color-name">Primary Dark</div>
+            <div class="color-hex">#4a9cd3</div>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #21a4b8">secondary-500</div>
+          <div class="color-info">
+            <div class="color-name">Secondary Light</div>
+            <div class="color-hex">#21a4b8</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #4abfe0">secondary-500-dark</div>
+          <div class="color-info">
+            <div class="color-name">Secondary Dark</div>
+            <div class="color-hex">#4abfe0</div>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #2f9e44">success-500</div>
+          <div class="color-info">
+            <div class="color-name">Success Light</div>
+            <div class="color-hex">#2f9e44</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #4ac876">success-500-dark</div>
+          <div class="color-info">
+            <div class="color-name">Success Dark</div>
+            <div class="color-hex">#4ac876</div>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f4b940">warning-500</div>
+          <div class="color-info">
+            <div class="color-name">Warning Light</div>
+            <div class="color-hex">#f4b940</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f2c838">warning-500-dark</div>
+          <div class="color-info">
+            <div class="color-name">Warning Dark</div>
+            <div class="color-hex">#f2c838</div>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #dc3244">danger-500</div>
+          <div class="color-info">
+            <div class="color-name">Danger Light</div>
+            <div class="color-hex">#dc3244</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #e74c63">danger-500-dark</div>
+          <div class="color-info">
+            <div class="color-name">Danger Dark</div>
+            <div class="color-hex">#e74c63</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-box" style="margin-top: 24px">
+        <div class="component-label">📊 Matriz Completa</div>
+        <p>
+          Veja todas as 50+ cores com informações de contraste WCAG em:
+          <strong>docs/COLOR_MAPPING.json</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Seção 3: Componentes em Ação -->
+    <div class="section">
+      <div class="section-title">Componentes — Light & Dark</div>
+      <div class="section-desc">Todos os componentes se adaptam automaticamente ao tema ativo</div>
+
+      <div class="components-showcase">
+        <!-- Buttons -->
+        <div class="component-box">
+          <div class="component-label">Buttons</div>
+          <button class="btn btn-primary">Primary Button</button>
+          <br />
+          <button class="btn btn-secondary">Secondary</button>
+          <br />
+          <button class="btn btn-danger">Delete</button>
+        </div>
+
+        <!-- Inputs -->
+        <div class="component-box">
+          <div class="component-label">Form Inputs</div>
+          <div class="input-group">
+            <label class="input-label">Nome</label>
+            <input type="text" placeholder="Digite seu nome" />
+          </div>
+          <div class="input-group">
+            <label class="input-label">Mensagem</label>
+            <textarea placeholder="Digite uma mensagem" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="component-box">
+          <div class="component-label">Badges & Tags</div>
+          <div style="margin-top: 12px">
+            <span class="badge badge-success">✓ Sucesso</span>
+            <span class="badge badge-warning">⚠ Aviso</span>
+            <span class="badge badge-info">ℹ Info</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <div style="margin-top: 24px">
+        <div class="component-label" style="margin-bottom: 16px">Alerts</div>
+        <div class="alert alert-success">✓ Operação concluída com sucesso!</div>
+        <div class="alert alert-warning">⚠ Atenção: Esta ação é irreversível.</div>
+        <div class="alert alert-danger">✕ Erro ao processar sua solicitação.</div>
+      </div>
+    </div>
+
+    <!-- Seção 4: Como Usar -->
+    <div class="section">
+      <div class="section-title">Como Usar em Seu Projeto</div>
+      <div class="section-desc">Integração rápida em Next.js 15 + React 19</div>
+
+      <h3 style="font-family: var(--font-h); margin: 24px 0 12px; color: var(--black)">1. Copiar arquivos</h3>
+      <div class="code-block">
+cp app/globals.css app/theme-provider.ts [seu-projeto]/app/
+      </div>
+
+      <h3 style="font-family: var(--font-h); margin: 24px 0 12px; color: var(--black)">2. Envolver com ThemeProvider</h3>
+      <div class="code-block">
+// app/layout.tsx
+import { ThemeProvider } from './theme-provider'
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="pt-BR"&gt;
+      &lt;body&gt;
+        &lt;ThemeProvider&gt;
+          {children}
+        &lt;/ThemeProvider&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+      </div>
+
+      <h3 style="font-family: var(--font-h); margin: 24px 0 12px; color: var(--black)">3. Usar hook em componentes</h3>
+      <div class="code-block">
+'use client'
+import { useTheme } from '@/app/theme-provider'
+
+export function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme()
+
+  return (
+    &lt;button onClick={toggleTheme}&gt;
+      {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+    &lt;/button&gt;
+  )
+}
+      </div>
+
+      <h3 style="font-family: var(--font-h); margin: 24px 0 12px; color: var(--black)">4. Componentes funcionam automaticamente</h3>
+      <div class="code-block">
+// Tokens se adaptam automaticamente ao tema ativo!
+&lt;button className="bg-primary-500 text-white"&gt;Click me&lt;/button&gt;
+      </div>
+    </div>
+
+    <!-- Seção 5: Boas Práticas -->
+    <div class="section">
+      <div class="section-title">Boas Práticas</div>
+      <div class="section-desc">Siga essas orientações para manter Dark Mode simples e eficiente</div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px">
+        <div class="component-box">
+          <div class="component-label">✅ Fazer</div>
+          <ul style="list-style: none; line-height: 1.8; color: var(--success-500)">
+            <li>✓ Usar CSS custom properties</li>
+            <li>✓ Usar Tailwind `dark:` variant</li>
+            <li>✓ Testar em navegadores reais</li>
+            <li>✓ Validar contraste WCAG</li>
+            <li>✓ Usar transições suaves</li>
+          </ul>
+        </div>
+
+        <div class="component-box">
+          <div class="component-label">❌ Evitar</div>
+          <ul style="list-style: none; line-height: 1.8; color: var(--danger-500)">
+            <li>✕ Hardcoded colors (#fff, etc)</li>
+            <li>✕ Filter `invert()`</li>
+            <li>✕ Media queries manuais</li>
+            <li>✕ Lógica JS para mudança de cor</li>
+            <li>✕ Ignorar acessibilidade</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 6: FAQ -->
+    <div class="section">
+      <div class="section-title">FAQ</div>
+      <div class="section-desc">Dúvidas frequentes sobre Dark Mode</div>
+
+      <div style="margin-top: 24px">
+        <h4 style="font-family: var(--font-h); margin: 16px 0 8px; color: var(--black)">Como forço light mode em um container?</h4>
+        <p style="color: var(--gray500); line-height: 1.6">Use a classe `light` no elemento para sobrescrever o tema escuro:</p>
+        <div class="code-block">&lt;div class="light"&gt;Este container sempre usa light mode&lt;/div&gt;</div>
+
+        <h4 style="font-family: var(--font-h); margin: 16px 0 8px; color: var(--black)">Dark mode afeta performance?</h4>
+        <p style="color: var(--gray500); line-height: 1.6">
+          Não. CSS custom properties são rápidas e Tailwind v4 otimiza automaticamente os seletores `:dark`.
+        </p>
+
+        <h4 style="font-family: var(--font-h); margin: 16px 0 8px; color: var(--black)">Posso ter temas customizáveis?</h4>
+        <p style="color: var(--gray500); line-height: 1.6">
+          Por enquanto, apenas light/dark. Temas customizáveis é future work.
+        </p>
+
+        <h4 style="font-family: var(--font-h); margin: 16px 0 8px; color: var(--black)">Como evito FOUC (Flash of Unstyled Content)?</h4>
+        <p style="color: var(--gray500); line-height: 1.6">
+          A função `initTheme()` é chamada no `ThemeProvider` antes de renderizar componentes. Para máxima segurança, adicione um script de
+          inicialização inline no `<head>`.
+        </p>
+      </div>
+    </div>
+
+    <!-- Seção 7: Recursos -->
+    <div class="section">
+      <div class="section-title">Recursos</div>
+      <div class="section-desc">Links e documentação para aprender mais</div>
+
+      <div style="margin-top: 24px">
+        <div class="table-responsive">
+          <table>
+            <tr>
+              <th>Recurso</th>
+              <th>Descrição</th>
+              <th>Link</th>
+            </tr>
+            <tr>
+              <td>Implementação</td>
+              <td>Documentação técnica completa com arquitetura</td>
+              <td><strong>docs/DARK_MODE_IMPLEMENTATION.md</strong></td>
+            </tr>
+            <tr>
+              <td>Matriz de Cores</td>
+              <td>JSON com todas as 50+ cores e info de contraste</td>
+              <td><strong>docs/COLOR_MAPPING.json</strong></td>
+            </tr>
+            <tr>
+              <td>Theme Provider</td>
+              <td>Código TypeScript reutilizável</td>
+              <td><strong>app/theme-provider.ts</strong></td>
+            </tr>
+            <tr>
+              <td>WCAG Contrast Checker</td>
+              <td>Validar contraste de cores</td>
+              <td>webaim.org/resources/contrastchecker</td>
+            </tr>
+            <tr>
+              <td>Tailwind Dark Mode</td>
+              <td>Documentação oficial Tailwind</td>
+              <td>tailwindcss.com/docs/dark-mode</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>
+        Labin01 Design System — Dark Mode v1.0 |
+        <a href="./index.html">← Voltar ao Hub</a>
+      </p>
+      <p style="margin-top: 12px; font-size: 12px">
+        Criado com ❤️ para o Laboratório de Inovação RF01 | Março 2026
+      </p>
+    </div>
+  </body>
+</html>

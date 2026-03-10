@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colors Schema — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        /* Labin01 Tokens */
+        --primary-50: #a3bdd0;
+        --primary-100: #769cb9;
+        --primary-200: #5f8cad;
+        --primary-300: #487ba1;
+        --primary-400: #316b96;
+        --primary-500: #1a5a8a;
+
+        --secondary-50: #a6dbe3;
+        --secondary-100: #7ac8d4;
+        --secondary-200: #64bfcd;
+        --secondary-300: #4db6c6;
+        --secondary-400: #37adbf;
+        --secondary-500: #21a4b8;
+
+        --success-50: #acd8b4;
+        --success-100: #82c58f;
+        --success-200: #6dbb7c;
+        --success-300: #59b169;
+        --success-400: #44a857;
+        --success-500: #2f9e44;
+
+        --warning-50: #fbe3b3;
+        --warning-100: #f8d58c;
+        --warning-200: #f7ce79;
+        --warning-300: #f6c766;
+        --warning-400: #f5c053;
+        --warning-500: #f4b940;
+
+        --danger-50: #f1adb4;
+        --danger-100: #ea848f;
+        --danger-200: #e7707c;
+        --danger-300: #e35b69;
+        --danger-400: #e04757;
+        --danger-500: #dc3244;
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--gray50);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      /* ── Header ── */
+      .ds-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500) 0%,
+          var(--secondary-500) 100%
+        );
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: white;
+        margin-bottom: 48px;
+      }
+      .ds-header .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 8px;
+      }
+      .ds-header h1 {
+        font-family: var(--font-h);
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .ds-header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* ── Section ── */
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray200);
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 28px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--gray100);
+      }
+
+      /* ── Palette row ── */
+      .palette {
+        margin-bottom: 36px;
+      }
+      .palette:last-child {
+        margin-bottom: 0;
+      }
+      .palette-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .palette-name {
+        font-family: var(--font-h);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .palette-desc {
+        font-size: 12px;
+        color: var(--gray500);
+      }
+      .palette-use {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--gray500);
+        background: var(--gray100);
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+      }
+
+      .swatch {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .swatch-color {
+        height: 72px;
+        width: 100%;
+      }
+      .swatch-info {
+        padding: 8px 10px;
+        background: white;
+      }
+      .swatch-scale {
+        font-family: var(--font-m);
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--gray500);
+      }
+      .swatch-hex {
+        font-family: var(--font-m);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--black);
+        margin-top: 2px;
+      }
+      .swatch-token {
+        font-family: var(--font-m);
+        font-size: 9px;
+        color: var(--gray500);
+        margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .swatch.is-default .swatch-color {
+        position: relative;
+      }
+      .swatch.is-default .swatch-info {
+        background: var(--gray50);
+      }
+      .swatch.is-default .swatch-scale {
+        color: var(--primary-500);
+      }
+      .default-badge {
+        display: inline-block;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background: var(--primary-500);
+        color: white;
+        padding: 1px 5px;
+        border-radius: 3px;
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+
+      /* ── Shade special ── */
+      .shade-row {
+        display: flex;
+        gap: 12px;
+      }
+      .shade-card {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .shade-color {
+        height: 80px;
+      }
+      .shade-info {
+        padding: 10px 14px;
+        background: white;
+      }
+      .shade-name {
+        font-family: var(--font-h);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .shade-hex {
+        font-family: var(--font-m);
+        font-size: 11px;
+        color: var(--gray500);
+        margin-top: 2px;
+      }
+      .shade-token {
+        font-family: var(--font-m);
+        font-size: 10px;
+        color: var(--primary-300);
+        margin-top: 3px;
+      }
+
+      /* ── Semantic roles ── */
+      .roles-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+      .role-card {
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        padding: 16px 18px;
+      }
+      .role-dot-row {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .role-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .role-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 4px;
+      }
+      .role-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .role-desc {
+        font-size: 12px;
+        color: var(--gray500);
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+      .role-tokens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .role-token {
+        font-family: var(--font-m);
+        font-size: 10px;
+        background: #f0f6ff;
+        color: var(--primary-500);
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+
+      /* ── Contrast table ── */
+      .contrast-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .contrast-table th {
+        text-align: left;
+        padding: 10px 14px;
+        background: var(--gray100);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--gray500);
+      }
+      .contrast-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--gray100);
+        vertical-align: middle;
+      }
+      .contrast-table tr:last-child td {
+        border-bottom: none;
+      }
+      .contrast-swatch {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cs-color {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        flex-shrink: 0;
+      }
+      .cs-hex {
+        font-family: var(--font-m);
+        font-size: 12px;
+        color: var(--gray700);
+      }
+      .contrast-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .badge-aaa {
+        background: #e6f7ea;
+        color: #1e6e30;
+      }
+      .badge-aa {
+        background: #fff8e1;
+        color: #7a5a00;
+      }
+      .badge-fail {
+        background: #fde8ea;
+        color: #9b1a26;
+      }
+      .preview-text {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      /* ── Usage preview ── */
+      .preview-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .prev-card {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--gray200);
+      }
+      .prev-header {
+        padding: 16px 20px;
+      }
+      .prev-body {
+        padding: 16px 20px;
+        background: white;
+      }
+      .prev-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+      }
+      .prev-title {
+        font-family: var(--font-h);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .prev-text {
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.75;
+      }
+      .prev-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+      }
+      .prev-btn {
+        padding: 7px 14px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* ── Alerts preview ── */
+      .alerts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .alert-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .alert-title {
+        font-weight: 700;
+        margin-bottom: 2px;
+        font-size: 13px;
+      }
+
+      /* ── Next steps ── */
+      .next-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .next-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .next-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      .next-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .next-desc {
+        font-size: 12px;
+        color: var(--gray500);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="ds-header">
+      <div class="label">
+        Design System Labin01 · Laboratório de Inovação RF01
+      </div>
+      <h1>🎨 Colors Schema</h1>
+      <p>
+        Paletas de cor, tokens semânticos, papéis de uso e guia de
+        acessibilidade — extraído diretamente do Figma.
+      </p>
+    </div>
+
+    <!-- PALETTES -->
+    <div class="section">
+      <div class="section-title">🖌️ Paletas de Cor — Escala 50 → 500</div>
+
+      <!-- PRIMARY -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Primary</div>
+          <div class="palette-desc">
+            Azul institucional — cor principal do Labin01
+          </div>
+          <div class="palette-use">Botões, links, ações principais</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #a3bdd0"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">50</div>
+              <div class="swatch-hex">#A3BDD0</div>
+              <div class="swatch-token">primary.50</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #769cb9"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">100</div>
+              <div class="swatch-hex">#769CB9</div>
+              <div class="swatch-token">primary.100</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #5f8cad"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">200</div>
+              <div class="swatch-hex">#5F8CAD</div>
+              <div class="swatch-token">primary.200</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #487ba1"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">300</div>
+              <div class="swatch-hex">#487BA1</div>
+              <div class="swatch-token">primary.300</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #316b96"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">400</div>
+              <div class="swatch-hex">#316B96</div>
+              <div class="swatch-token">primary.400</div>
+            </div>
+          </div>
+          <div class="swatch is-default">
+            <div class="swatch-color" style="background: #1a5a8a"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">
+                500 <span class="default-badge">default</span>
+              </div>
+              <div class="swatch-hex">#1A5A8A</div>
+              <div class="swatch-token">primary.500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECONDARY -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Secondary</div>
+          <div class="palette-desc">Teal/Ciano — destaque e complemento</div>
+          <div class="palette-use">Badges, highlights, hover states</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #a6dbe3"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">50</div>
+              <div class="swatch-hex">#A6DBE3</div>
+              <div class="swatch-token">secondary.50</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #7ac8d4"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">100</div>
+              <div class="swatch-hex">#7AC8D4</div>
+              <div class="swatch-token">secondary.100</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #64bfcd"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">200</div>
+              <div class="swatch-hex">#64BFCD</div>
+              <div class="swatch-token">secondary.200</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #4db6c6"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">300</div>
+              <div class="swatch-hex">#4DB6C6</div>
+              <div class="swatch-token">secondary.300</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #37adbf"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">400</div>
+              <div class="swatch-hex">#37ADBF</div>
+              <div class="swatch-token">secondary.400</div>
+            </div>
+          </div>
+          <div class="swatch is-default">
+            <div class="swatch-color" style="background: #21a4b8"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">
+                500 <span class="default-badge">default</span>
+              </div>
+              <div class="swatch-hex">#21A4B8</div>
+              <div class="swatch-token">secondary.500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Success</div>
+          <div class="palette-desc">
+            Verde — confirmações e feedbacks positivos
+          </div>
+          <div class="palette-use">Alerts, toasts, ícones de status</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #acd8b4"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">50</div>
+              <div class="swatch-hex">#ACD8B4</div>
+              <div class="swatch-token">success.50</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #82c58f"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">100</div>
+              <div class="swatch-hex">#82C58F</div>
+              <div class="swatch-token">success.100</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #6dbb7c"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">200</div>
+              <div class="swatch-hex">#6DBB7C</div>
+              <div class="swatch-token">success.200</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #59b169"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">300</div>
+              <div class="swatch-hex">#59B169</div>
+              <div class="swatch-token">success.300</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #44a857"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">400</div>
+              <div class="swatch-hex">#44A857</div>
+              <div class="swatch-token">success.400</div>
+            </div>
+          </div>
+          <div class="swatch is-default">
+            <div class="swatch-color" style="background: #2f9e44"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">
+                500 <span class="default-badge">default</span>
+              </div>
+              <div class="swatch-hex">#2F9E44</div>
+              <div class="swatch-token">success.500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WARNING -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Warning</div>
+          <div class="palette-desc">Âmbar — alertas e atenção</div>
+          <div class="palette-use">Avisos, estados pendentes, dicas</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #fbe3b3"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">50</div>
+              <div class="swatch-hex">#FBE3B3</div>
+              <div class="swatch-token">warning.50</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f8d58c"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">100</div>
+              <div class="swatch-hex">#F8D58C</div>
+              <div class="swatch-token">warning.100</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f7ce79"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">200</div>
+              <div class="swatch-hex">#F7CE79</div>
+              <div class="swatch-token">warning.200</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f6c766"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">300</div>
+              <div class="swatch-hex">#F6C766</div>
+              <div class="swatch-token">warning.300</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f5c053"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">400</div>
+              <div class="swatch-hex">#F5C053</div>
+              <div class="swatch-token">warning.400</div>
+            </div>
+          </div>
+          <div class="swatch is-default">
+            <div class="swatch-color" style="background: #f4b940"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">
+                500 <span class="default-badge">default</span>
+              </div>
+              <div class="swatch-hex">#F4B940</div>
+              <div class="swatch-token">warning.500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DANGER -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Danger</div>
+          <div class="palette-desc">Vermelho — erros e ações destrutivas</div>
+          <div class="palette-use">Erros, delete, estados críticos</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f1adb4"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">50</div>
+              <div class="swatch-hex">#F1ADB4</div>
+              <div class="swatch-token">danger.50</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #ea848f"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">100</div>
+              <div class="swatch-hex">#EA848F</div>
+              <div class="swatch-token">danger.100</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #e7707c"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">200</div>
+              <div class="swatch-hex">#E7707C</div>
+              <div class="swatch-token">danger.200</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #e35b69"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">300</div>
+              <div class="swatch-hex">#E35B69</div>
+              <div class="swatch-token">danger.300</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #e04757"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">400</div>
+              <div class="swatch-hex">#E04757</div>
+              <div class="swatch-token">danger.400</div>
+            </div>
+          </div>
+          <div class="swatch is-default">
+            <div class="swatch-color" style="background: #dc3244"></div>
+            <div class="swatch-info">
+              <div class="swatch-scale">
+                500 <span class="default-badge">default</span>
+              </div>
+              <div class="swatch-hex">#DC3244</div>
+              <div class="swatch-token">danger.500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHADE -->
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Shade</div>
+          <div class="palette-desc">Branco e Preto — neutros base</div>
+          <div class="palette-use">Fundos, texto, superfícies</div>
+        </div>
+        <div class="shade-row">
+          <div class="shade-card">
+            <div
+              class="shade-color"
+              style="background: #f8f9fa; border-bottom: 1px solid #e2e8f0"
+            ></div>
+            <div class="shade-info">
+              <div class="shade-name">White</div>
+              <div class="shade-hex">#F8F9FA</div>
+              <div class="shade-token">shade.white</div>
+            </div>
+          </div>
+          <div class="shade-card">
+            <div class="shade-color" style="background: #191d21"></div>
+            <div class="shade-info">
+              <div class="shade-name">Black</div>
+              <div class="shade-hex">#191D21</div>
+              <div class="shade-token">shade.black</div>
+            </div>
+          </div>
+          <div style="flex: 4"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMANTIC ROLES -->
+    <div class="section">
+      <div class="section-title">🎭 Papéis Semânticos</div>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div class="role-dot" style="background: #1a5a8a"></div>
+            <div class="role-dot" style="background: #316b96"></div>
+            <div class="role-dot" style="background: #a3bdd0"></div>
+          </div>
+          <div class="role-label">Brand</div>
+          <div class="role-title">Ação Principal</div>
+          <div class="role-desc">
+            Botões primários, links, foco de formulários, elementos interativos
+            principais.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">primary.500</span>
+            <span class="role-token">primary.400</span>
+            <span class="role-token">primary.50</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div class="role-dot" style="background: #21a4b8"></div>
+            <div class="role-dot" style="background: #37adbf"></div>
+            <div class="role-dot" style="background: #a6dbe3"></div>
+          </div>
+          <div class="role-label">Accent</div>
+          <div class="role-title">Destaque</div>
+          <div class="role-desc">
+            Badges, tags, highlights, ícones de apoio, bordas de foco
+            secundárias.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">secondary.500</span>
+            <span class="role-token">secondary.400</span>
+            <span class="role-token">secondary.50</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div class="role-dot" style="background: #2f9e44"></div>
+            <div class="role-dot" style="background: #f4b940"></div>
+            <div class="role-dot" style="background: #dc3244"></div>
+          </div>
+          <div class="role-label">Feedback</div>
+          <div class="role-title">Estados de Sistema</div>
+          <div class="role-desc">
+            Alertas, toasts, validações de formulário, badges de status.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">success.500</span>
+            <span class="role-token">warning.500</span>
+            <span class="role-token">danger.500</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div class="role-dot" style="background: #191d21"></div>
+            <div class="role-dot" style="background: #487ba1"></div>
+            <div class="role-dot" style="background: #769cb9"></div>
+          </div>
+          <div class="role-label">Text</div>
+          <div class="role-title">Hierarquia Textual</div>
+          <div class="role-desc">
+            Texto primário, secundário, placeholder, desabilitado e texto sobre
+            fundos escuros.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">shade.black</span>
+            <span class="role-token">primary.300</span>
+            <span class="role-token">primary.100</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div
+              class="role-dot"
+              style="background: #f8f9fa; border: 1px solid #e2e8f0"
+            ></div>
+            <div
+              class="role-dot"
+              style="background: #ffffff; border: 1px solid #e2e8f0"
+            ></div>
+            <div
+              class="role-dot"
+              style="background: rgba(25, 29, 33, 0.5)"
+            ></div>
+          </div>
+          <div class="role-label">Surface</div>
+          <div class="role-title">Superfícies</div>
+          <div class="role-desc">
+            Background de página, cards, modais e overlays de backdrop.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">shade.white</span>
+            <span class="role-token">#FFFFFF</span>
+            <span class="role-token">rgba(25,29,33,.5)</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-dot-row">
+            <div class="role-dot" style="background: #769cb9"></div>
+            <div class="role-dot" style="background: #487ba1"></div>
+            <div class="role-dot" style="background: #21a4b8"></div>
+          </div>
+          <div class="role-label">Border</div>
+          <div class="role-title">Bordas e Divisores</div>
+          <div class="role-desc">
+            Bordas de inputs, divisores, separadores e outline de foco.
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">primary.100</span>
+            <span class="role-token">primary.300</span>
+            <span class="role-token">secondary.500</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTRAST / ACESSIBILIDADE -->
+    <div class="section">
+      <div class="section-title">♿ Acessibilidade — Contraste WCAG</div>
+      <table class="contrast-table">
+        <thead>
+          <tr>
+            <th>Cor de Fundo</th>
+            <th>Texto</th>
+            <th>Contraste</th>
+            <th>WCAG AA</th>
+            <th>Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #1a5a8a"></div>
+                <div>
+                  <div class="cs-hex">#1A5A8A</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    primary.500
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div
+                  class="cs-color"
+                  style="background: #f8f9fa; border: 1px solid #e2e8f0"
+                ></div>
+                <div class="cs-hex">#F8F9FA</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">6.2:1</td>
+            <td><span class="contrast-badge badge-aaa">AAA ✓</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="background: #1a5a8a; color: #f8f9fa"
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #21a4b8"></div>
+                <div>
+                  <div class="cs-hex">#21A4B8</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    secondary.500
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div
+                  class="cs-color"
+                  style="background: #f8f9fa; border: 1px solid #e2e8f0"
+                ></div>
+                <div class="cs-hex">#F8F9FA</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">3.1:1</td>
+            <td><span class="contrast-badge badge-aa">AA Large</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="background: #21a4b8; color: #f8f9fa"
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div
+                  class="cs-color"
+                  style="background: #f8f9fa; border: 1px solid #e2e8f0"
+                ></div>
+                <div>
+                  <div class="cs-hex">#F8F9FA</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    shade.white
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #191d21"></div>
+                <div class="cs-hex">#191D21</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">17.9:1</td>
+            <td><span class="contrast-badge badge-aaa">AAA ✓</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="
+                  background: #f8f9fa;
+                  color: #191d21;
+                  border: 1px solid #e2e8f0;
+                "
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #2f9e44"></div>
+                <div>
+                  <div class="cs-hex">#2F9E44</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    success.500
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div
+                  class="cs-color"
+                  style="background: #f8f9fa; border: 1px solid #e2e8f0"
+                ></div>
+                <div class="cs-hex">#F8F9FA</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">4.6:1</td>
+            <td><span class="contrast-badge badge-aaa">AA ✓</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="background: #2f9e44; color: #f8f9fa"
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #f4b940"></div>
+                <div>
+                  <div class="cs-hex">#F4B940</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    warning.500
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #191d21"></div>
+                <div class="cs-hex">#191D21</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">8.3:1</td>
+            <td><span class="contrast-badge badge-aaa">AAA ✓</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="background: #f4b940; color: #191d21"
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contrast-swatch">
+                <div class="cs-color" style="background: #dc3244"></div>
+                <div>
+                  <div class="cs-hex">#DC3244</div>
+                  <div style="font-size: 10px; color: var(--gray500)">
+                    danger.500
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contrast-swatch">
+                <div
+                  class="cs-color"
+                  style="background: #f8f9fa; border: 1px solid #e2e8f0"
+                ></div>
+                <div class="cs-hex">#F8F9FA</div>
+              </div>
+            </td>
+            <td style="font-family: var(--font-m); font-weight: 700">5.1:1</td>
+            <td><span class="contrast-badge badge-aaa">AA ✓</span></td>
+            <td>
+              <span
+                class="preview-text"
+                style="background: #dc3244; color: #f8f9fa"
+                >Texto Labin01</span
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- USAGE PREVIEW -->
+    <div class="section">
+      <div class="section-title">👁️ Preview — Componentes Reais</div>
+      <div class="preview-grid">
+        <!-- Card Primary -->
+        <div class="prev-card">
+          <div class="prev-header" style="background: #1a5a8a; color: white">
+            <span
+              class="prev-tag"
+              style="background: rgba(255, 255, 255, 0.2); color: white"
+              >Inovação</span
+            >
+            <div class="prev-title" style="color: white">
+              Dashboard Analítico
+            </div>
+            <div class="prev-text" style="color: rgba(255, 255, 255, 0.8)">
+              Visualização de métricas em tempo real do laboratório.
+            </div>
+          </div>
+          <div class="prev-body">
+            <div class="prev-actions">
+              <button
+                class="prev-btn"
+                style="background: #1a5a8a; color: white"
+              >
+                Acessar
+              </button>
+              <button
+                class="prev-btn"
+                style="
+                  background: transparent;
+                  border: 1.5px solid #1a5a8a;
+                  color: #1a5a8a;
+                "
+              >
+                Ver mais
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Secondary -->
+        <div class="prev-card">
+          <div
+            class="prev-header"
+            style="
+              background: linear-gradient(135deg, #1a5a8a, #21a4b8);
+              color: white;
+            "
+          >
+            <span
+              class="prev-tag"
+              style="background: rgba(255, 255, 255, 0.2); color: white"
+              >Novo</span
+            >
+            <div class="prev-title" style="color: white">Projeto RF01-2026</div>
+            <div class="prev-text" style="color: rgba(255, 255, 255, 0.8)">
+              Automação com IA para processos críticos.
+            </div>
+          </div>
+          <div class="prev-body">
+            <div class="prev-actions">
+              <button
+                class="prev-btn"
+                style="background: #21a4b8; color: white"
+              >
+                Explorar
+              </button>
+              <button
+                class="prev-btn"
+                style="background: #acd8b4; color: #1e6e30"
+              >
+                Concluído
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <div class="alerts" style="margin-top: 16px">
+        <div
+          class="alert"
+          style="background: #e6f7ea; border-left: 3px solid #2f9e44"
+        >
+          <div class="alert-icon">✅</div>
+          <div>
+            <div class="alert-title" style="color: #1e6e30">
+              Projeto publicado com sucesso
+            </div>
+            <div style="color: #2d6a3f; font-size: 12px">
+              O projeto RF01-2026 foi enviado para revisão da equipe.
+            </div>
+          </div>
+        </div>
+        <div
+          class="alert"
+          style="background: #fef9ec; border-left: 3px solid #f4b940"
+        >
+          <div class="alert-icon">⚠️</div>
+          <div>
+            <div class="alert-title" style="color: #7a5a00">
+              Atenção — prazo se aproximando
+            </div>
+            <div style="color: #7a5a00; font-size: 12px">
+              A entrega do relatório Q1 vence em 3 dias.
+            </div>
+          </div>
+        </div>
+        <div
+          class="alert"
+          style="background: #fde8ea; border-left: 3px solid #dc3244"
+        >
+          <div class="alert-icon">❌</div>
+          <div>
+            <div class="alert-title" style="color: #9b1a26">
+              Erro ao carregar dados
+            </div>
+            <div style="color: #9b1a26; font-size: 12px">
+              Não foi possível conectar à API. Tente novamente.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAILWIND REFERENCE -->
+    <div class="section">
+      <div class="section-title">⚡ Referência Tailwind CSS</div>
+      <div
+        style="
+          font-family: var(--font-m);
+          font-size: 12px;
+          background: #1e2432;
+          color: #a8d8ea;
+          padding: 20px 24px;
+          border-radius: 10px;
+          line-height: 2;
+        "
+      >
+        <span style="color: #536878">/* Cores de fundo */</span><br />
+        bg-primary-500 &nbsp;&nbsp;&nbsp;<span style="color: #c3e88d"
+          >→ #1A5A8A</span
+        ><br />
+        bg-secondary-500 &nbsp;<span style="color: #c3e88d">→ #21A4B8</span
+        ><br />
+        bg-success-50 &nbsp;&nbsp;&nbsp;<span style="color: #c3e88d"
+          >→ #ACD8B4 (fundo de alert)</span
+        ><br />
+        bg-warning-50 &nbsp;&nbsp;&nbsp;<span style="color: #c3e88d"
+          >→ #FBE3B3 (fundo de alert)</span
+        ><br />
+        bg-danger-50 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c3e88d"
+          >→ #F1ADB4 (fundo de alert)</span
+        ><br /><br />
+        <span style="color: #536878">/* Texto */</span><br />
+        text-primary-500 &nbsp;<span style="color: #c3e88d"
+          >→ corpo principal sobre branco</span
+        ><br />
+        text-shade-black &nbsp;<span style="color: #c3e88d"
+          >→ #191D21 (texto padrão)</span
+        ><br />
+        text-shade-white &nbsp;<span style="color: #c3e88d"
+          >→ #F8F9FA (texto sobre escuro)</span
+        ><br /><br />
+        <span style="color: #536878">/* Bordas */</span><br />
+        border-primary-100 &nbsp;<span style="color: #c3e88d"
+          >→ input padrão</span
+        ><br />
+        border-secondary-500 <span style="color: #c3e88d">→ input em foco</span
+        ><br />
+        border-danger-500 &nbsp;&nbsp;<span style="color: #c3e88d"
+          >→ input com erro</span
+        >
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-title">🚀 Próximas Etapas</div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="next-icon">🧩</div>
+          <div class="next-title">Componentes</div>
+          <div class="next-desc">
+            Button, Input, Badge, Card usando os tokens de cor
+          </div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">🌙</div>
+          <div class="next-title">Dark Mode</div>
+          <div class="next-desc">
+            Adicionar set "dark" ao tokens.json com inversão semântica
+          </div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">🔗</div>
+          <div class="next-title">Code Connect</div>
+          <div class="next-desc">
+            Linkar componentes Figma ↔ React com tokens como props
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        --primary-50: #a3bdd0;
+        --primary-100: #769cb9;
+        --primary-300: #487ba1;
+        --primary-400: #316b96;
+        --primary-500: #1a5a8a;
+
+        --secondary-50: #a6dbe3;
+        --secondary-100: #7ac8d4;
+        --secondary-500: #21a4b8;
+
+        --success-50: #acd8b4;
+        --success-500: #2f9e44;
+
+        --warning-50: #fbe3b3;
+        --warning-500: #f4b940;
+
+        --danger-50: #f1adb4;
+        --danger-500: #dc3244;
+
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --shadow-sm: 0 1px 2px 0 rgba(25, 29, 33, 0.08);
+        --shadow-md: 0 4px 8px 0 rgba(25, 29, 33, 0.1);
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--gray50);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .ds-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500) 0%,
+          var(--secondary-500) 100%
+        );
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: white;
+        margin-bottom: 48px;
+      }
+      .ds-header .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 8px;
+      }
+      .ds-header h1 {
+        font-family: var(--font-h);
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .ds-header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray200);
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 28px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--gray100);
+      }
+
+      /* Buttons */
+      .btn {
+        font-family: var(--font-s);
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-md);
+        transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+      }
+      .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      .btn-sm { padding: 6px 12px; font-size: 12px; }
+      .btn-md { padding: 8px 16px; font-size: 14px; }
+      .btn-lg { padding: 12px 24px; font-size: 16px; }
+
+      .btn-primary {
+        background: var(--primary-500);
+        color: white;
+      }
+      .btn-primary:hover:not(:disabled) { background: var(--primary-400); }
+      .btn-primary:active:not(:disabled) { background: var(--primary-300); }
+
+      .btn-secondary {
+        background: var(--secondary-500);
+        color: white;
+      }
+      .btn-secondary:hover:not(:disabled) { background: var(--secondary-100); }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--primary-500);
+        color: var(--primary-500);
+      }
+      .btn-outline:hover:not(:disabled) {
+        background: var(--primary-50);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--primary-500);
+      }
+      .btn-ghost:hover:not(:disabled) {
+        background: var(--primary-50);
+      }
+
+      .btn-danger {
+        background: var(--danger-500);
+        color: white;
+      }
+      .btn-danger:hover:not(:disabled) { background: #c42a3a; }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+      .btn-group {
+        margin-bottom: 20px;
+      }
+      .btn-group-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--gray500);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Inputs */
+      .input-wrap {
+        margin-bottom: 20px;
+        max-width: 320px;
+      }
+      .input-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .input {
+        width: 100%;
+        padding: 10px 14px;
+        font-family: var(--font-s);
+        font-size: 14px;
+        border: 1.5px solid var(--primary-100);
+        border-radius: var(--radius-md);
+        background: white;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .input:focus {
+        outline: none;
+        border-color: var(--secondary-500);
+        box-shadow: 0 0 0 3px rgba(33, 164, 184, 0.2);
+      }
+      .input::placeholder { color: var(--gray500); }
+      .input.input-error {
+        border-color: var(--danger-500);
+      }
+      .input.input-error:focus {
+        box-shadow: 0 0 0 3px rgba(220, 50, 68, 0.2);
+      }
+      .input.input-success {
+        border-color: var(--success-500);
+      }
+      .input:disabled {
+        background: var(--gray100);
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+      .input-helper {
+        font-size: 12px;
+        color: var(--gray500);
+        margin-top: 4px;
+      }
+      .input-error-msg {
+        font-size: 12px;
+        color: var(--danger-500);
+        margin-top: 4px;
+      }
+      .input-icon-wrap {
+        position: relative;
+      }
+      .input-icon-wrap .input {
+        padding-left: 40px;
+      }
+      .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: var(--gray500);
+      }
+      .input-filled {
+        background: var(--gray100);
+        border-color: transparent;
+      }
+      .input-filled:focus {
+        background: white;
+        border-color: var(--secondary-500);
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+      .badge-primary { background: var(--primary-50); color: var(--primary-500); }
+      .badge-secondary { background: var(--secondary-50); color: var(--secondary-500); }
+      .badge-success { background: var(--success-50); color: var(--success-500); }
+      .badge-warning { background: var(--warning-50); color: #7a5a00; }
+      .badge-danger { background: var(--danger-50); color: var(--danger-500); }
+      .badge-outline {
+        background: transparent;
+        border: 1.5px solid var(--primary-300);
+        color: var(--primary-500);
+      }
+
+      /* Cards */
+      .card {
+        border: 1px solid var(--gray200);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: white;
+        box-shadow: var(--shadow-sm);
+      }
+      .card-header {
+        padding: 16px 20px;
+        background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+        color: white;
+      }
+      .card-header .card-tag {
+        font-size: 11px;
+        font-weight: 600;
+        background: rgba(255,255,255,0.2);
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+      .card-header .card-title {
+        font-family: var(--font-h);
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .card-header .card-subtitle {
+        font-size: 13px;
+        opacity: 0.85;
+        margin-top: 4px;
+      }
+      .card-body {
+        padding: 20px;
+      }
+      .card-body .card-title {
+        font-family: var(--font-h);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .card-body .card-text {
+        font-size: 14px;
+        color: var(--gray700);
+        line-height: 1.6;
+      }
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .card-simple {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--gray200);
+        box-shadow: var(--shadow-sm);
+      }
+
+      /* Alerts */
+      .alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .alert-icon { font-size: 18px; flex-shrink: 0; }
+      .alert-content { flex: 1; }
+      .alert-title { font-weight: 700; margin-bottom: 2px; }
+      .alert-desc { font-size: 13px; opacity: 0.9; }
+      .alert-success {
+        background: #e6f7ea;
+        border-left: 4px solid var(--success-500);
+      }
+      .alert-success .alert-title { color: #1e6e30; }
+      .alert-success .alert-desc { color: #2d6a3f; }
+      .alert-warning {
+        background: #fef9ec;
+        border-left: 4px solid var(--warning-500);
+      }
+      .alert-warning .alert-title { color: #7a5a00; }
+      .alert-warning .alert-desc { color: #7a5a00; }
+      .alert-danger {
+        background: #fde8ea;
+        border-left: 4px solid var(--danger-500);
+      }
+      .alert-danger .alert-title { color: #9b1a26; }
+      .alert-danger .alert-desc { color: #9b1a26; }
+      .alert-info {
+        background: #e8f4fc;
+        border-left: 4px solid var(--secondary-500);
+      }
+      .alert-info .alert-title { color: var(--primary-500); }
+      .alert-info .alert-desc { color: var(--primary-300); }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      .next-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .next-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .next-icon { font-size: 28px; margin-bottom: 8px; }
+      .next-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .next-desc { font-size: 12px; color: var(--gray500); }
+    </style>
+  </head>
+  <body>
+    <div class="ds-header">
+      <div class="label">Design System Labin01 · Laboratório de Inovação RF01</div>
+      <h1>Components</h1>
+      <p>
+        Botões, inputs, badges, cards e alerts — componentes essenciais usando
+        os tokens de cor, tipografia e spacing.
+      </p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="section">
+      <div class="section-title">Buttons — Variantes e Estados</div>
+
+      <div class="btn-group">
+        <div class="btn-group-label">Tamanhos (Primary)</div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary btn-md">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <div class="btn-group-label">Variantes (Medium)</div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-md">Primary</button>
+          <button class="btn btn-secondary btn-md">Secondary</button>
+          <button class="btn btn-outline btn-md">Outline</button>
+          <button class="btn btn-ghost btn-md">Ghost</button>
+          <button class="btn btn-danger btn-md">Danger</button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <div class="btn-group-label">Estados</div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-md">Default</button>
+          <button class="btn btn-primary btn-md" disabled>Disabled</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUTS -->
+    <div class="section">
+      <div class="section-title">Inputs / Text Fields</div>
+
+      <div class="input-wrap">
+        <label class="input-label">Default</label>
+        <input type="text" class="input" placeholder="Digite aqui..." />
+        <div class="input-helper">Helper text opcional</div>
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Focus</label>
+        <input type="text" class="input" placeholder="Campo em foco" value="Valor preenchido" />
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Com erro</label>
+        <input type="text" class="input input-error" placeholder="E-mail inválido" value="usuario@" />
+        <div class="input-error-msg">Digite um e-mail válido</div>
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Success</label>
+        <input type="text" class="input input-success" value="Validação OK" />
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Disabled</label>
+        <input type="text" class="input" placeholder="Desabilitado" disabled />
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Filled (background cinza)</label>
+        <input type="text" class="input input-filled" placeholder="Placeholder" />
+      </div>
+
+      <div class="input-wrap">
+        <label class="input-label">Com ícone</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">🔍</span>
+          <input type="text" class="input" placeholder="Buscar..." />
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="section">
+      <div class="section-title">Badges / Tags</div>
+      <div>
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-outline">Outline</span>
+      </div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="section">
+      <div class="section-title">Cards</div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag">Inovação</span>
+            <div class="card-title">Dashboard Analítico</div>
+            <div class="card-subtitle">Métricas em tempo real do laboratório</div>
+          </div>
+          <div class="card-body">
+            <div class="card-actions">
+              <button class="btn btn-primary btn-sm">Acessar</button>
+              <button class="btn btn-outline btn-sm">Ver mais</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Card Simples</div>
+            <div class="card-text">
+              Card sem header colorido, ideal para conteúdo neutro.
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-secondary btn-sm">Ação</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-simple">
+          <div class="card-title">Card com Borda</div>
+          <div class="card-text">
+            Variante com borda e sombra leve, padding interno.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="section">
+      <div class="section-title">Alerts</div>
+      <div class="alert alert-success">
+        <span class="alert-icon">✅</span>
+        <div class="alert-content">
+          <div class="alert-title">Projeto publicado com sucesso</div>
+          <div class="alert-desc">O projeto RF01-2026 foi enviado para revisão.</div>
+        </div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <div class="alert-title">Atenção — prazo se aproximando</div>
+          <div class="alert-desc">A entrega do relatório Q1 vence em 3 dias.</div>
+        </div>
+      </div>
+      <div class="alert alert-danger">
+        <span class="alert-icon">❌</span>
+        <div class="alert-content">
+          <div class="alert-title">Erro ao carregar dados</div>
+          <div class="alert-desc">Não foi possível conectar à API. Tente novamente.</div>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">ℹ️</span>
+        <div class="alert-content">
+          <div class="alert-title">Informação</div>
+          <div class="alert-desc">Novos recursos disponíveis na versão 2.0.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-title">Próximas Etapas</div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="next-icon">📦</div>
+          <div class="next-title">Overlays</div>
+          <div class="next-desc">Modal, Tooltip, Toast e Popover</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">📚</div>
+          <div class="next-title">Storybook</div>
+          <div class="next-desc">Documentação interativa dos componentes</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">🔗</div>
+          <div class="next-title">Code Connect</div>
+          <div class="next-desc">Linkar Figma ↔ React com tokens como props</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

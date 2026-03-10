@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overlays — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        --primary-500: #1a5a8a;
+        --primary-300: #487ba1;
+
+        --secondary-500: #21a4b8;
+
+        --success-50: #acd8b4;
+        --success-500: #2f9e44;
+
+        --warning-50: #fbe3b3;
+        --warning-500: #f4b940;
+
+        --danger-50: #f1adb4;
+        --danger-500: #dc3244;
+
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --shadow-lg: 0 8px 24px 0 rgba(25, 29, 33, 0.12);
+        --shadow-xl: 0 16px 48px 0 rgba(25, 29, 33, 0.16);
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--gray50);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .ds-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500) 0%,
+          var(--secondary-500) 100%
+        );
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: white;
+        margin-bottom: 48px;
+      }
+      .ds-header .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 8px;
+      }
+      .ds-header h1 {
+        font-family: var(--font-h);
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .ds-header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray200);
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 28px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--gray100);
+      }
+
+      /* Modal preview (static) */
+      .modal-preview-wrap {
+        position: relative;
+        min-height: 320px;
+        background: rgba(25, 29, 33, 0.5);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .modal-preview {
+        background: white;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        max-width: 400px;
+        width: 100%;
+        overflow: hidden;
+      }
+      .modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--gray200);
+      }
+      .modal-header.informative { background: white; }
+      .modal-header.confirm { background: var(--gray100); }
+      .modal-header.destructive {
+        background: var(--danger-50);
+        border-bottom-color: var(--danger-500);
+      }
+      .modal-title {
+        font-family: var(--font-h);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .modal-body {
+        padding: 20px 24px;
+        font-size: 14px;
+        color: var(--gray700);
+        line-height: 1.6;
+      }
+      .modal-footer {
+        padding: 16px 24px;
+        background: var(--gray50);
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+      }
+      .modal-btn {
+        padding: 8px 16px;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-s);
+      }
+      .modal-btn-primary {
+        background: var(--primary-500);
+        color: white;
+      }
+      .modal-btn-secondary {
+        background: white;
+        border: 1.5px solid var(--gray200);
+        color: var(--gray700);
+      }
+      .modal-btn-danger {
+        background: var(--danger-500);
+        color: white;
+      }
+      .modal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+      }
+      .modal-card-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--gray500);
+        margin-bottom: 12px;
+      }
+
+      /* Tooltip */
+      .tooltip-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+      }
+      .tooltip-demo {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-trigger {
+        padding: 8px 16px;
+        background: var(--primary-500);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: var(--font-s);
+      }
+      .tooltip-bubble {
+        position: absolute;
+        background: var(--black);
+        color: white;
+        font-size: 12px;
+        padding: 8px 12px;
+        border-radius: var(--radius-md);
+        white-space: nowrap;
+        box-shadow: var(--shadow-lg);
+        z-index: 10;
+      }
+      .tooltip-bubble::after {
+        content: "";
+        position: absolute;
+        border: 6px solid transparent;
+      }
+      .tooltip-top .tooltip-bubble {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 8px;
+      }
+      .tooltip-top .tooltip-bubble::after {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top-color: var(--black);
+      }
+      .tooltip-right .tooltip-bubble {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 8px;
+      }
+      .tooltip-right .tooltip-bubble::after {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-right-color: var(--black);
+      }
+      .tooltip-bottom .tooltip-bubble {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 8px;
+      }
+      .tooltip-bottom .tooltip-bubble::after {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom-color: var(--black);
+      }
+      .tooltip-left .tooltip-bubble {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 8px;
+      }
+      .tooltip-left .tooltip-bubble::after {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left-color: var(--black);
+      }
+
+      /* Popover */
+      .popover-demo {
+        position: relative;
+        display: inline-block;
+      }
+      .popover {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        width: 280px;
+        overflow: hidden;
+      }
+      .popover-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--gray100);
+      }
+      .popover-title {
+        font-family: var(--font-h);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .popover-body {
+        padding: 16px 20px;
+        font-size: 13px;
+        color: var(--gray700);
+        line-height: 1.5;
+      }
+      .popover-footer {
+        padding: 12px 20px;
+        background: var(--gray50);
+        display: flex;
+        justify-content: flex-end;
+      }
+      .popover-trigger {
+        padding: 8px 16px;
+        background: var(--secondary-500);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: var(--font-s);
+      }
+
+      /* Toast */
+      .toast-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 400px;
+      }
+      .toast {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        font-size: 14px;
+        font-family: var(--font-s);
+      }
+      .toast-icon { font-size: 18px; flex-shrink: 0; }
+      .toast-content { flex: 1; }
+      .toast-title { font-weight: 600; margin-bottom: 2px; }
+      .toast-desc { font-size: 13px; opacity: 0.9; }
+      .toast-close {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        opacity: 0.6;
+        padding: 0;
+        line-height: 1;
+      }
+      .toast-success {
+        background: white;
+        border-left: 4px solid var(--success-500);
+      }
+      .toast-success .toast-title { color: var(--success-500); }
+      .toast-warning {
+        background: white;
+        border-left: 4px solid var(--warning-500);
+      }
+      .toast-warning .toast-title { color: #7a5a00; }
+      .toast-error {
+        background: white;
+        border-left: 4px solid var(--danger-500);
+      }
+      .toast-error .toast-title { color: var(--danger-500); }
+      .toast-info {
+        background: white;
+        border-left: 4px solid var(--secondary-500);
+      }
+      .toast-info .toast-title { color: var(--secondary-500); }
+
+      /* Usage guidelines */
+      .guidelines-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .guideline-card {
+        padding: 20px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--gray200);
+      }
+      .guideline-card.do {
+        border-left: 4px solid var(--success-500);
+        background: #f0fdf4;
+      }
+      .guideline-card.dont {
+        border-left: 4px solid var(--danger-500);
+        background: #fef2f2;
+      }
+      .guideline-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .guideline-card.do .guideline-title { color: #166534; }
+      .guideline-card.dont .guideline-title { color: #9b1a26; }
+      .guideline-desc {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .guideline-card.do .guideline-desc { color: #166534; }
+      .guideline-card.dont .guideline-desc { color: #9b1a26; }
+
+      .next-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .next-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .next-icon { font-size: 28px; margin-bottom: 8px; }
+      .next-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .next-desc { font-size: 12px; color: var(--gray500); }
+    </style>
+  </head>
+  <body>
+    <div class="ds-header">
+      <div class="label">Design System Labin01 · Laboratório de Inovação RF01</div>
+      <h1>Overlays</h1>
+      <p>
+        Modal, Tooltip, Popover e Toast — componentes de sobreposição e feedback
+        contextual para interfaces profissionais.
+      </p>
+    </div>
+
+    <!-- MODAL -->
+    <div class="section">
+      <div class="section-title">Modal / Dialog</div>
+      <div class="modal-grid">
+        <div>
+          <div class="modal-card-label">Informativo</div>
+          <div class="modal-preview-wrap">
+            <div class="modal-preview">
+              <div class="modal-header informative">
+                <div class="modal-title">Confirmar envio</div>
+              </div>
+              <div class="modal-body">
+                Deseja enviar o relatório para análise? Esta ação não pode ser
+                desfeita.
+              </div>
+              <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancelar</button>
+                <button class="modal-btn modal-btn-primary">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="modal-card-label">Confirmação</div>
+          <div class="modal-preview-wrap">
+            <div class="modal-preview">
+              <div class="modal-header confirm">
+                <div class="modal-title">Salvar alterações?</div>
+              </div>
+              <div class="modal-body">
+                Você tem alterações não salvas. Deseja salvar antes de sair?
+              </div>
+              <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Descartar</button>
+                <button class="modal-btn modal-btn-primary">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="modal-card-label">Destrutivo</div>
+          <div class="modal-preview-wrap">
+            <div class="modal-preview">
+              <div class="modal-header destructive">
+                <div class="modal-title">Excluir projeto?</div>
+              </div>
+              <div class="modal-body">
+                Esta ação é irreversível. Todos os dados do projeto serão
+                permanentemente removidos.
+              </div>
+              <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancelar</button>
+                <button class="modal-btn modal-btn-danger">Excluir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLTIP -->
+    <div class="section">
+      <div class="section-title">Tooltip — Direções</div>
+      <div class="tooltip-grid">
+        <div class="tooltip-demo tooltip-top">
+          <button class="tooltip-trigger">Top</button>
+          <div class="tooltip-bubble">Dica de tooltip</div>
+        </div>
+        <div class="tooltip-demo tooltip-right">
+          <button class="tooltip-trigger">Right</button>
+          <div class="tooltip-bubble">Dica à direita</div>
+        </div>
+        <div class="tooltip-demo tooltip-bottom">
+          <button class="tooltip-trigger">Bottom</button>
+          <div class="tooltip-bubble">Dica abaixo</div>
+        </div>
+        <div class="tooltip-demo tooltip-left">
+          <button class="tooltip-trigger">Left</button>
+          <div class="tooltip-bubble">Dica à esquerda</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPOVER -->
+    <div class="section">
+      <div class="section-title">Popover — Conteúdo Rico</div>
+      <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+        <div class="popover-demo">
+          <button class="popover-trigger">Abrir Popover</button>
+          <div class="popover" style="margin-top: 12px;">
+            <div class="popover-header">
+              <div class="popover-title">Título do Popover</div>
+            </div>
+            <div class="popover-body">
+              Conteúdo adicional com opções ou informações contextuais. Pode
+              incluir links, botões ou ações secundárias.
+            </div>
+            <div class="popover-footer">
+              <button class="modal-btn modal-btn-secondary" style="padding: 6px 12px; font-size: 12px;">Fechar</button>
+              <button class="modal-btn modal-btn-primary" style="padding: 6px 12px; font-size: 12px;">Ação</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="section">
+      <div class="section-title">Toast / Snackbar</div>
+      <div class="toast-stack">
+        <div class="toast toast-success">
+          <span class="toast-icon">✅</span>
+          <div class="toast-content">
+            <div class="toast-title">Sucesso</div>
+            <div class="toast-desc">Alterações salvas com sucesso.</div>
+          </div>
+          <button class="toast-close">×</button>
+        </div>
+        <div class="toast toast-warning">
+          <span class="toast-icon">⚠️</span>
+          <div class="toast-content">
+            <div class="toast-title">Atenção</div>
+            <div class="toast-desc">Sessão expirando em 5 minutos.</div>
+          </div>
+          <button class="toast-close">×</button>
+        </div>
+        <div class="toast toast-error">
+          <span class="toast-icon">❌</span>
+          <div class="toast-content">
+            <div class="toast-title">Erro</div>
+            <div class="toast-desc">Falha ao conectar. Tente novamente.</div>
+          </div>
+          <button class="toast-close">×</button>
+        </div>
+        <div class="toast toast-info">
+          <span class="toast-icon">ℹ️</span>
+          <div class="toast-content">
+            <div class="toast-title">Informação</div>
+            <div class="toast-desc">Nova versão disponível.</div>
+          </div>
+          <button class="toast-close">×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- USAGE GUIDELINES -->
+    <div class="section">
+      <div class="section-title">Usage Guidelines — Do's & Don'ts</div>
+      <div class="guidelines-grid">
+        <div class="guideline-card do">
+          <div class="guideline-title">Do — Modal</div>
+          <div class="guideline-desc">
+            Use para ações críticas (excluir, confirmar, decisões irreversíveis).
+            Mantenha o conteúdo conciso e forneça botões claros de cancelar/confirmar.
+          </div>
+        </div>
+        <div class="guideline-card dont">
+          <div class="guideline-title">Don't — Modal</div>
+          <div class="guideline-desc">
+            Evite modais para conteúdo informativo simples. Não empilhe modais.
+            Use overlay escuro (rgba) para destacar o contexto.
+          </div>
+        </div>
+        <div class="guideline-card do">
+          <div class="guideline-title">Do — Tooltip</div>
+          <div class="guideline-desc">
+            Use para dicas curtas (1–2 linhas). Garanta acessibilidade (hover + focus).
+            Posicione de forma que não cubra o elemento alvo.
+          </div>
+        </div>
+        <div class="guideline-card dont">
+          <div class="guideline-title">Don't — Tooltip</div>
+          <div class="guideline-desc">
+            Não use para conteúdo essencial. Evite tooltips em elementos móveis.
+            Não coloque informações críticas apenas em tooltips.
+          </div>
+        </div>
+        <div class="guideline-card do">
+          <div class="guideline-title">Do — Toast</div>
+          <div class="guideline-desc">
+            Use para feedback de ações (salvar, enviar, erro). Auto-dismiss após 3–5s.
+            Empilhe verticalmente quando houver múltiplos.
+          </div>
+        </div>
+        <div class="guideline-card dont">
+          <div class="guideline-title">Don't — Toast</div>
+          <div class="guideline-desc">
+            Não use para erros críticos que exigem ação. Evite toasts excessivos.
+            Não coloque mais de 3 toasts visíveis ao mesmo tempo.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-title">Próximas Etapas</div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="next-icon">📚</div>
+          <div class="next-title">Storybook</div>
+          <div class="next-desc">Documentação interativa com variantes</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">♿</div>
+          <div class="next-title">Acessibilidade</div>
+          <div class="next-desc">Focus trap, ARIA, teclado para overlays</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">📱</div>
+          <div class="next-title">Responsivo</div>
+          <div class="next-desc">Modal fullscreen em mobile</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design System Labin01 — Laboratório de Inovação RF01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        --primary-500: #1a5a8a;
+        --primary-300: #487ba1;
+        --primary-50: #a3bdd0;
+
+        --secondary-500: #21a4b8;
+        --secondary-50: #a6dbe3;
+
+        --success-500: #2f9e44;
+        --warning-500: #f4b940;
+        --danger-500: #dc3244;
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--gray50);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      /* Hero */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500) 0%,
+          var(--secondary-500) 100%
+        );
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: white;
+        margin-bottom: 48px;
+        text-align: center;
+      }
+      .hero .version {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0.8;
+        margin-bottom: 12px;
+      }
+      .hero h1 {
+        font-family: var(--font-h);
+        font-size: 42px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+      }
+      .hero .subtitle {
+        font-size: 18px;
+        opacity: 0.9;
+        line-height: 1.5;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      /* Section */
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray200);
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--gray100);
+      }
+
+      /* Foundation & Component grids */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+      }
+      .card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid var(--gray200);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .card-link:hover {
+        border-color: var(--primary-300);
+        box-shadow: 0 4px 12px rgba(26, 90, 138, 0.15);
+      }
+      .card-preview {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .card-preview.colors {
+        background: linear-gradient(135deg, #1a5a8a 0%, #21a4b8 50%, #2f9e44 100%);
+      }
+      .card-preview.typography {
+        background: var(--gray100);
+      }
+      .card-preview.typography span {
+        font-family: var(--font-h);
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .card-preview.spacing {
+        background: linear-gradient(90deg, var(--primary-400) 4px, var(--secondary-400) 8px, var(--primary-300) 16px);
+      }
+      .card-preview.components {
+        background: white;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .card-preview.components .mini-btn {
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 6px;
+        border: none;
+        font-family: var(--font-s);
+      }
+      .mini-btn-primary { background: var(--primary-500); color: white; }
+      .mini-btn-outline { background: transparent; border: 1px solid var(--primary-500); color: var(--primary-500); }
+      .card-preview.overlays {
+        background: rgba(25, 29, 33, 0.6);
+        position: relative;
+      }
+      .card-preview.overlays .mini-modal {
+        background: white;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--black);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      }
+      .card-info {
+        padding: 20px;
+      }
+      .card-info h3 {
+        font-family: var(--font-h);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .card-info p {
+        font-size: 13px;
+        color: var(--gray500);
+        line-height: 1.4;
+      }
+
+      /* Design principles */
+      .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+      }
+      .principle-card {
+        padding: 20px;
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        background: white;
+      }
+      .principle-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+      .principle-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .principle-desc {
+        font-size: 12px;
+        color: var(--gray500);
+        line-height: 1.5;
+      }
+
+      /* Quick reference table */
+      .ref-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .ref-table th {
+        text-align: left;
+        padding: 12px 16px;
+        background: var(--gray100);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--gray500);
+      }
+      .ref-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--gray100);
+      }
+      .ref-table tr:last-child td {
+        border-bottom: none;
+      }
+      .ref-token {
+        font-family: var(--font-m);
+        font-size: 12px;
+        color: var(--primary-500);
+        background: #f0f6ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* Resources */
+      .resources-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .resource-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        background: var(--gray100);
+        color: var(--primary-500);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: background 0.15s;
+      }
+      .resource-link:hover {
+        background: var(--primary-50);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="version">Design System v1.0</div>
+      <h1>Labin01</h1>
+      <p class="subtitle">
+        Laboratório de Inovação RF01 — Sistema de design para interfaces
+        consistentes, acessíveis e profissionais.
+      </p>
+    </div>
+
+    <!-- FOUNDATIONS -->
+    <div class="section">
+      <div class="section-title">Foundations</div>
+      <div class="grid">
+        <a href="colors-schema.html" class="card-link">
+          <div class="card-preview colors"></div>
+          <div class="card-info">
+            <h3>Colors Schema</h3>
+            <p>Paletas, tokens semânticos e guia de acessibilidade WCAG</p>
+          </div>
+        </a>
+        <a href="typography.html" class="card-link">
+          <div class="card-preview typography">
+            <span>Aa</span>
+          </div>
+          <div class="card-info">
+            <h3>Typography</h3>
+            <p>Fontes, escala tipográfica e papéis semânticos</p>
+          </div>
+        </a>
+        <a href="spacing-elevation.html" class="card-link">
+          <div class="card-preview spacing"></div>
+          <div class="card-info">
+            <h3>Spacing & Elevation</h3>
+            <p>Escala de espaçamento, radius e box-shadow</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- COMPONENTS -->
+    <div class="section">
+      <div class="section-title">Components</div>
+      <div class="grid">
+        <a href="components.html" class="card-link">
+          <div class="card-preview components">
+            <button class="mini-btn mini-btn-primary">Primary</button>
+            <button class="mini-btn mini-btn-outline">Outline</button>
+          </div>
+          <div class="card-info">
+            <h3>Components</h3>
+            <p>Buttons, Inputs, Badges, Cards e Alerts</p>
+          </div>
+        </a>
+        <a href="overlays.html" class="card-link">
+          <div class="card-preview overlays">
+            <div class="mini-modal">Modal</div>
+          </div>
+          <div class="card-info">
+            <h3>Overlays</h3>
+            <p>Modal, Tooltip, Popover e Toast</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- DESIGN PRINCIPLES -->
+    <div class="section">
+      <div class="section-title">Design Principles</div>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">◐</div>
+          <div class="principle-title">Consistência</div>
+          <div class="principle-desc">
+            Uso uniforme de tokens em todos os componentes e telas.
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">♿</div>
+          <div class="principle-title">Acessibilidade</div>
+          <div class="principle-desc">
+            Contraste WCAG, foco visível e suporte a teclado.
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🧩</div>
+          <div class="principle-title">Modularidade</div>
+          <div class="principle-desc">
+            Componentes reutilizáveis e composáveis por variantes.
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">✦</div>
+          <div class="principle-title">Clareza</div>
+          <div class="principle-desc">
+            Hierarquia visual clara e feedback imediato ao usuário.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="section">
+      <div class="section-title">Quick Reference</div>
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ref-token">primary.500</span></td>
+            <td>#1A5A8A</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">secondary.500</span></td>
+            <td>#21A4B8</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">font-heading</span></td>
+            <td>Plus Jakarta Sans</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">font-sans</span></td>
+            <td>Inter</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">font-mono</span></td>
+            <td>JetBrains Mono</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">spacing.4</span></td>
+            <td>16px</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">radius.md</span></td>
+            <td>8px</td>
+          </tr>
+          <tr>
+            <td><span class="ref-token">shadow-md</span></td>
+            <td>0 4px 8px rgba(25,29,33,.1)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RESOURCES -->
+    <div class="section">
+      <div class="section-title">Resources</div>
+      <div class="resources-list">
+        <a href="colors-schema.html" class="resource-link">Colors</a>
+        <a href="typography.html" class="resource-link">Typography</a>
+        <a href="spacing-elevation.html" class="resource-link">Spacing & Elevation</a>
+        <a href="components.html" class="resource-link">Components</a>
+        <a href="overlays.html" class="resource-link">Overlays</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spacing & Elevation — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --font-h: "Plus Jakarta Sans", sans-serif;
+        --font-s: "Inter", sans-serif;
+        --font-m: "JetBrains Mono", monospace;
+        --black: #191d21;
+        --white: #f8f9fa;
+        --gray50: #f8fafc;
+        --gray100: #f1f5f9;
+        --gray200: #e2e8f0;
+        --gray500: #64748b;
+        --gray700: #334155;
+
+        --primary-50: #a3bdd0;
+        --primary-100: #769cb9;
+        --primary-200: #5f8cad;
+        --primary-300: #487ba1;
+        --primary-400: #316b96;
+        --primary-500: #1a5a8a;
+
+        --secondary-50: #a6dbe3;
+        --secondary-100: #7ac8d4;
+        --secondary-200: #64bfcd;
+        --secondary-300: #4db6c6;
+        --secondary-400: #37adbf;
+        --secondary-500: #21a4b8;
+
+        --success-50: #acd8b4;
+        --success-500: #2f9e44;
+        --warning-50: #fbe3b3;
+        --warning-500: #f4b940;
+        --danger-50: #f1adb4;
+        --danger-500: #dc3244;
+
+        /* Spacing tokens */
+        --spacing-0: 0;
+        --spacing-1: 4px;
+        --spacing-2: 8px;
+        --spacing-3: 12px;
+        --spacing-4: 16px;
+        --spacing-5: 20px;
+        --spacing-6: 24px;
+        --spacing-8: 32px;
+        --spacing-10: 40px;
+        --spacing-12: 48px;
+        --spacing-16: 64px;
+        --spacing-20: 80px;
+        --spacing-24: 96px;
+
+        /* Radius tokens */
+        --radius-none: 0;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
+        --radius-2xl: 24px;
+        --radius-full: 9999px;
+
+        /* Shadow tokens */
+        --shadow-sm: 0 1px 2px 0 rgba(25, 29, 33, 0.08);
+        --shadow-md: 0 4px 8px 0 rgba(25, 29, 33, 0.1);
+        --shadow-lg: 0 8px 24px 0 rgba(25, 29, 33, 0.12);
+        --shadow-xl: 0 16px 48px 0 rgba(25, 29, 33, 0.16);
+      }
+
+      body {
+        font-family: var(--font-s);
+        background: var(--gray50);
+        color: var(--black);
+        padding: 48px 32px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .ds-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500) 0%,
+          var(--secondary-500) 100%
+        );
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: white;
+        margin-bottom: 48px;
+      }
+      .ds-header .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 8px;
+      }
+      .ds-header h1 {
+        font-family: var(--font-h);
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .ds-header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray200);
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary-500);
+        margin-bottom: 28px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--gray100);
+      }
+
+      /* Spacing scale */
+      .spacing-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .spacing-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .spacing-meta {
+        width: 140px;
+        flex-shrink: 0;
+      }
+      .spacing-token {
+        font-family: var(--font-m);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--primary-300);
+        background: #f0f6ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .spacing-value {
+        font-family: var(--font-m);
+        font-size: 11px;
+        color: var(--gray500);
+        margin-top: 2px;
+      }
+      .spacing-bar {
+        height: 24px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-400) 0%,
+          var(--secondary-400) 100%
+        );
+        border-radius: 4px;
+        min-width: 4px;
+      }
+
+      /* Border radius */
+      .radius-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+      }
+      .radius-card {
+        border: 1px solid var(--gray200);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .radius-preview {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-100) 0%,
+          var(--secondary-100) 100%
+        );
+      }
+      .radius-token {
+        font-family: var(--font-m);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--primary-300);
+        background: #f0f6ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .radius-value {
+        font-family: var(--font-m);
+        font-size: 10px;
+        color: var(--gray500);
+      }
+
+      /* Box shadow */
+      .shadow-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .shadow-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 12px;
+        padding: 24px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .shadow-card.shadow-sm { box-shadow: var(--shadow-sm); }
+      .shadow-card.shadow-md { box-shadow: var(--shadow-md); }
+      .shadow-card.shadow-lg { box-shadow: var(--shadow-lg); }
+      .shadow-card.shadow-xl { box-shadow: var(--shadow-xl); }
+      .shadow-label {
+        font-family: var(--font-h);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .shadow-spec {
+        font-family: var(--font-m);
+        font-size: 11px;
+        color: var(--gray500);
+        background: var(--gray100);
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+
+      /* Usage preview */
+      .usage-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-6);
+        box-shadow: var(--shadow-md);
+        max-width: 400px;
+      }
+      .usage-card .card-header {
+        font-family: var(--font-h);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: var(--spacing-2);
+      }
+      .usage-card .card-body {
+        font-size: 14px;
+        color: var(--gray700);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-4);
+      }
+      .usage-card .card-footer {
+        display: flex;
+        gap: var(--spacing-2);
+      }
+      .usage-card .btn {
+        padding: var(--spacing-2) var(--spacing-4);
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+      }
+      .usage-card .btn-primary {
+        background: var(--primary-500);
+        color: white;
+      }
+      .usage-card .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--primary-500);
+        color: var(--primary-500);
+      }
+
+      /* Tailwind reference */
+      .code-block {
+        font-family: var(--font-m);
+        font-size: 12px;
+        background: #1e2432;
+        color: #a8d8ea;
+        padding: 20px 24px;
+        border-radius: 10px;
+        line-height: 2;
+      }
+      .code-block .comment { color: #536878; }
+      .code-block .value { color: #c3e88d; }
+
+      /* Next steps */
+      .next-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .next-card {
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .next-icon { font-size: 28px; margin-bottom: 8px; }
+      .next-title {
+        font-family: var(--font-h);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 4px;
+      }
+      .next-desc { font-size: 12px; color: var(--gray500); }
+    </style>
+  </head>
+  <body>
+    <div class="ds-header">
+      <div class="label">Design System Labin01 · Laboratório de Inovação RF01</div>
+      <h1>Spacing & Elevation</h1>
+      <p>
+        Escala de espaçamento, border-radius e box-shadow — tokens prontos para
+        Tailwind CSS e implementação em React.
+      </p>
+    </div>
+
+    <!-- SPACING SCALE -->
+    <div class="section">
+      <div class="section-title">Spacing Scale — Escala 4px Base</div>
+      <div class="spacing-grid">
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.0</div>
+            <div class="spacing-value">0px</div>
+          </div>
+          <div class="spacing-bar" style="width: 0"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.1</div>
+            <div class="spacing-value">4px</div>
+          </div>
+          <div class="spacing-bar" style="width: 4px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.2</div>
+            <div class="spacing-value">8px</div>
+          </div>
+          <div class="spacing-bar" style="width: 8px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.3</div>
+            <div class="spacing-value">12px</div>
+          </div>
+          <div class="spacing-bar" style="width: 12px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.4</div>
+            <div class="spacing-value">16px</div>
+          </div>
+          <div class="spacing-bar" style="width: 16px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.5</div>
+            <div class="spacing-value">20px</div>
+          </div>
+          <div class="spacing-bar" style="width: 20px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.6</div>
+            <div class="spacing-value">24px</div>
+          </div>
+          <div class="spacing-bar" style="width: 24px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.8</div>
+            <div class="spacing-value">32px</div>
+          </div>
+          <div class="spacing-bar" style="width: 32px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.10</div>
+            <div class="spacing-value">40px</div>
+          </div>
+          <div class="spacing-bar" style="width: 40px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.12</div>
+            <div class="spacing-value">48px</div>
+          </div>
+          <div class="spacing-bar" style="width: 48px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.16</div>
+            <div class="spacing-value">64px</div>
+          </div>
+          <div class="spacing-bar" style="width: 64px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.20</div>
+            <div class="spacing-value">80px</div>
+          </div>
+          <div class="spacing-bar" style="width: 80px"></div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-meta">
+            <div class="spacing-token">spacing.24</div>
+            <div class="spacing-value">96px</div>
+          </div>
+          <div class="spacing-bar" style="width: 96px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BORDER RADIUS -->
+    <div class="section">
+      <div class="section-title">Border Radius — Cantos Arredondados</div>
+      <div class="radius-grid">
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 0"></div>
+          <div class="radius-token">radius.none</div>
+          <div class="radius-value">0</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 4px"></div>
+          <div class="radius-token">radius.sm</div>
+          <div class="radius-value">4px</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 8px"></div>
+          <div class="radius-token">radius.md</div>
+          <div class="radius-value">8px</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 12px"></div>
+          <div class="radius-token">radius.lg</div>
+          <div class="radius-value">12px</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 16px"></div>
+          <div class="radius-token">radius.xl</div>
+          <div class="radius-value">16px</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 24px"></div>
+          <div class="radius-token">radius.2xl</div>
+          <div class="radius-value">24px</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-preview" style="border-radius: 9999px"></div>
+          <div class="radius-token">radius.full</div>
+          <div class="radius-value">9999px</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX SHADOW -->
+    <div class="section">
+      <div class="section-title">Box Shadow — Elevação</div>
+      <div class="shadow-stack">
+        <div class="shadow-card shadow-sm">
+          <span class="shadow-label">shadow-sm</span>
+          <code class="shadow-spec">0 1px 2px 0 rgba(25,29,33,0.08)</code>
+        </div>
+        <div class="shadow-card shadow-md">
+          <span class="shadow-label">shadow-md</span>
+          <code class="shadow-spec">0 4px 8px 0 rgba(25,29,33,0.10)</code>
+        </div>
+        <div class="shadow-card shadow-lg">
+          <span class="shadow-label">shadow-lg</span>
+          <code class="shadow-spec">0 8px 24px 0 rgba(25,29,33,0.12)</code>
+        </div>
+        <div class="shadow-card shadow-xl">
+          <span class="shadow-label">shadow-xl</span>
+          <code class="shadow-spec">0 16px 48px 0 rgba(25,29,33,0.16)</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- USAGE PREVIEW -->
+    <div class="section">
+      <div class="section-title">Preview — Combinação em Card Real</div>
+      <div class="usage-card">
+        <div class="card-header">Card com Tokens Aplicados</div>
+        <div class="card-body">
+          Este card usa spacing.6 (24px) para padding, radius.lg (12px) para
+          cantos, shadow-md para elevação e spacing.2 (8px) entre botões.
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary">Ação Principal</button>
+          <button class="btn btn-outline">Secundária</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAILWIND REFERENCE -->
+    <div class="section">
+      <div class="section-title">Referência Tailwind CSS</div>
+      <div class="code-block">
+        <span class="comment">/* Spacing */</span><br />
+        p-1 &nbsp;&nbsp;&nbsp;&nbsp;<span class="value">→ 4px</span><br />
+        p-2 &nbsp;&nbsp;&nbsp;&nbsp;<span class="value">→ 8px</span><br />
+        p-4 &nbsp;&nbsp;&nbsp;&nbsp;<span class="value">→ 16px</span><br />
+        p-6 &nbsp;&nbsp;&nbsp;&nbsp;<span class="value">→ 24px</span><br />
+        gap-2 &nbsp;&nbsp;<span class="value">→ 8px</span><br />
+        gap-4 &nbsp;&nbsp;<span class="value">→ 16px</span><br /><br />
+        <span class="comment">/* Border Radius */</span><br />
+        rounded-sm &nbsp;<span class="value">→ 4px</span><br />
+        rounded-md &nbsp;<span class="value">→ 8px</span><br />
+        rounded-lg &nbsp;<span class="value">→ 12px</span><br />
+        rounded-xl &nbsp;<span class="value">→ 16px</span><br />
+        rounded-2xl &nbsp;<span class="value">→ 24px</span><br />
+        rounded-full &nbsp;<span class="value">→ 9999px</span><br /><br />
+        <span class="comment">/* Box Shadow */</span><br />
+        shadow-sm &nbsp;&nbsp;<span class="value">→ 0 1px 2px rgba(25,29,33,.08)</span><br />
+        shadow-md &nbsp;&nbsp;<span class="value">→ 0 4px 8px rgba(25,29,33,.10)</span><br />
+        shadow-lg &nbsp;&nbsp;<span class="value">→ 0 8px 24px rgba(25,29,33,.12)</span><br />
+        shadow-xl &nbsp;&nbsp;<span class="value">→ 0 16px 48px rgba(25,29,33,.16)</span>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-title">Próximas Etapas</div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="next-icon">🧩</div>
+          <div class="next-title">Componentes</div>
+          <div class="next-desc">Button, Input, Badge, Card usando spacing e elevation</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">📦</div>
+          <div class="next-title">Overlays</div>
+          <div class="next-desc">Modal, Tooltip, Toast com shadow-xl para elevação</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">📚</div>
+          <div class="next-title">Storybook</div>
+          <div class="next-desc">Documentação interativa com tokens como props</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

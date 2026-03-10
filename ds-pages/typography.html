@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography — Design System Labin01</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --color-primary-500: #1a5a8a;
+        --color-primary-300: #487ba1;
+        --color-primary-100: #769cb9;
+        --color-secondary-500: #21a4b8;
+        --color-shade-white: #f8f9fa;
+        --color-shade-black: #191d21;
+        --color-gray-100: #f1f5f9;
+        --color-gray-200: #e2e8f0;
+        --color-gray-500: #64748b;
+        --color-gray-700: #334155;
+
+        --font-heading: "Plus Jakarta Sans", sans-serif;
+        --font-sans: "Inter", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: #f8fafc;
+        color: var(--color-shade-black);
+        padding: 48px 32px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .ds-header {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-500) 0%,
+          var(--color-secondary-500) 100%
+        );
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: white;
+        margin-bottom: 48px;
+      }
+      .ds-header .label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin-bottom: 8px;
+      }
+      .ds-header h1 {
+        font-family: var(--font-heading);
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .ds-header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 15px;
+      }
+
+      /* Sections */
+      .section {
+        background: white;
+        border-radius: 12px;
+        padding: 36px 40px;
+        margin-bottom: 24px;
+        border: 1px solid var(--color-gray-200);
+      }
+      .section-title {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-secondary-500);
+        margin-bottom: 28px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--color-gray-100);
+      }
+
+      /* Type Scale rows */
+      .type-row {
+        display: flex;
+        align-items: baseline;
+        gap: 24px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--color-gray-100);
+      }
+      .type-row:last-child {
+        border-bottom: none;
+      }
+
+      .type-meta {
+        width: 200px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .type-meta .token {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--color-primary-300);
+        background: #f0f6ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        display: inline-block;
+        width: fit-content;
+      }
+      .type-meta .spec {
+        font-size: 11px;
+        color: var(--color-gray-500);
+        margin-top: 4px;
+      }
+
+      .type-sample {
+        flex: 1;
+        line-height: 1.2;
+      }
+
+      /* Individual scales */
+      .s-xs {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        font-weight: 400;
+      }
+      .s-sm {
+        font-family: var(--font-sans);
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .s-base {
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .s-lg {
+        font-family: var(--font-sans);
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .s-xl {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .s-2xl {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .s-3xl {
+        font-family: var(--font-heading);
+        font-size: 30px;
+        font-weight: 700;
+      }
+      .s-4xl {
+        font-family: var(--font-heading);
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .s-5xl {
+        font-family: var(--font-heading);
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .s-6xl {
+        font-family: var(--font-heading);
+        font-size: 60px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      /* Fonts showcase */
+      .font-card {
+        border: 1px solid var(--color-gray-200);
+        border-radius: 10px;
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+      .font-tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--color-primary-300);
+        background: #f0f6ff;
+        padding: 3px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+      .font-name {
+        font-size: 13px;
+        color: var(--color-gray-500);
+        margin-bottom: 12px;
+      }
+      .font-preview-heading {
+        font-family: var(--font-heading);
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--color-shade-black);
+        line-height: 1.25;
+      }
+      .font-preview-sans {
+        font-family: var(--font-sans);
+        font-size: 16px;
+        color: var(--color-gray-700);
+        line-height: 1.6;
+        margin-top: 8px;
+      }
+      .font-preview-mono {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        color: var(--color-primary-500);
+        background: var(--color-gray-100);
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-top: 8px;
+      }
+      .weights-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--color-gray-100);
+      }
+      .weight-item {
+        text-align: center;
+      }
+      .weight-sample {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        line-height: 1;
+        color: var(--color-shade-black);
+      }
+      .weight-label {
+        font-size: 10px;
+        color: var(--color-gray-500);
+        margin-top: 4px;
+        font-family: var(--font-mono);
+      }
+
+      /* Semantic roles */
+      .roles-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .role-card {
+        border: 1px solid var(--color-gray-200);
+        border-radius: 8px;
+        padding: 16px 20px;
+      }
+      .role-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-secondary-500);
+        margin-bottom: 8px;
+      }
+      .role-desc {
+        font-size: 12px;
+        color: var(--color-gray-500);
+        margin-bottom: 8px;
+      }
+      .role-tokens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .role-token {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        background: #f0f6ff;
+        color: var(--color-primary-500);
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+
+      /* Usage example */
+      .usage-preview {
+        background: #f8fafc;
+        border-radius: 8px;
+        padding: 24px;
+        border: 1px solid var(--color-gray-200);
+      }
+      .usage-preview .tag-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        color: white;
+        background: var(--color-secondary-500);
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+      .usage-preview .card-title {
+        font-family: var(--font-heading);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--color-shade-black);
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+      }
+      .usage-preview .card-body {
+        font-size: 14px;
+        color: var(--color-gray-700);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .usage-preview .card-caption {
+        font-size: 12px;
+        color: var(--color-gray-500);
+        font-style: italic;
+      }
+
+      /* Next steps */
+      .next-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .next-card {
+        background: white;
+        border: 1px solid var(--color-gray-200);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .next-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      .next-title {
+        font-family: var(--font-heading);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-shade-black);
+        margin-bottom: 4px;
+      }
+      .next-desc {
+        font-size: 12px;
+        color: var(--color-gray-500);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ds-header">
+      <div class="label">
+        Design System Labin01 · Laboratório de Inovação RF01
+      </div>
+      <h1>Typography System</h1>
+      <p>
+        Fontes, escala tipográfica, pesos e papéis semânticos — pronto para
+        React + Tailwind CSS
+      </p>
+    </div>
+
+    <!-- FONT FAMILIES -->
+    <div class="section">
+      <div class="section-title">🔤 Font Families</div>
+
+      <div class="font-card">
+        <div class="font-tag">font-heading</div>
+        <div class="font-name">Plus Jakarta Sans — Headings, títulos, CTAs</div>
+        <div class="font-preview-heading">Laboratório de Inovação</div>
+        <div class="weights-row">
+          <div class="weight-item">
+            <div class="weight-sample" style="font-weight: 400">Aa</div>
+            <div class="weight-label">400 Regular</div>
+          </div>
+          <div class="weight-item">
+            <div class="weight-sample" style="font-weight: 500">Aa</div>
+            <div class="weight-label">500 Medium</div>
+          </div>
+          <div class="weight-item">
+            <div class="weight-sample" style="font-weight: 600">Aa</div>
+            <div class="weight-label">600 SemiBold</div>
+          </div>
+          <div class="weight-item">
+            <div class="weight-sample" style="font-weight: 700">Aa</div>
+            <div class="weight-label">700 Bold</div>
+          </div>
+          <div class="weight-item">
+            <div class="weight-sample" style="font-weight: 800">Aa</div>
+            <div class="weight-label">800 ExtraBold</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-tag">font-sans</div>
+        <div class="font-name">Inter — Body, labels, UI elements</div>
+        <div class="font-preview-sans">
+          Interface limpa e legível para componentes, formulários e textos
+          corridos. Excelente legibilidade em telas de alta e baixa resolução.
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-tag">font-mono</div>
+        <div class="font-name">
+          JetBrains Mono — Código, IDs, dados técnicos
+        </div>
+        <div class="font-preview-mono">
+          const labinToken = "DS-LABIN01-v1.0.0";
+        </div>
+      </div>
+    </div>
+
+    <!-- TYPE SCALE -->
+    <div class="section">
+      <div class="section-title">📏 Type Scale — Escala Modular 1.25x</div>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-xs</div>
+          <div class="spec">12px · Inter 400 · ls +0.02em</div>
+        </div>
+        <div class="type-sample s-xs">
+          Caption, helper text, tooltip — Labin01
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-sm</div>
+          <div class="spec">14px · Inter 400 · ls +0.01em</div>
+        </div>
+        <div class="type-sample s-sm">
+          Labels, badges, secondary info — Labin01
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-base</div>
+          <div class="spec">16px · Inter 400 · lh 1.5</div>
+        </div>
+        <div class="type-sample s-base">
+          Body text padrão, parágrafos, descrições — Labin01
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-lg</div>
+          <div class="spec">18px · Inter 400 · lh 1.75</div>
+        </div>
+        <div class="type-sample s-lg">Body grande, intro text — Labin01</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-xl</div>
+          <div class="spec">20px · Jakarta 600 · ls -0.01em</div>
+        </div>
+        <div class="type-sample s-xl">Heading 5 — Labin01</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-2xl</div>
+          <div class="spec">24px · Jakarta 600 · ls -0.01em</div>
+        </div>
+        <div class="type-sample s-2xl">Heading 4 — Labin01</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-3xl</div>
+          <div class="spec">30px · Jakarta 700 · ls -0.02em</div>
+        </div>
+        <div class="type-sample s-3xl">Heading 3 — Labin01</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-4xl</div>
+          <div class="spec">36px · Jakarta 700 · ls -0.02em</div>
+        </div>
+        <div class="type-sample s-4xl">Heading 2</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-5xl</div>
+          <div class="spec">48px · Jakarta 800 · ls -0.03em</div>
+        </div>
+        <div class="type-sample s-5xl">Heading 1</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="token">text-6xl</div>
+          <div class="spec">60px · Jakarta 800 · ls -0.03em</div>
+        </div>
+        <div class="type-sample s-6xl">Display</div>
+      </div>
+    </div>
+
+    <!-- SEMANTIC ROLES -->
+    <div class="section">
+      <div class="section-title">🎭 Papéis Semânticos</div>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-label">Display / Hero</div>
+          <div class="role-desc">
+            Títulos de página, banners, splash screens
+          </div>
+          <div class="role-tokens">
+            <span class="role-token">text-5xl / text-6xl</span>
+            <span class="role-token">font-heading</span>
+            <span class="role-token">font-extrabold</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Heading</div>
+          <div class="role-desc">Títulos de seções e cards</div>
+          <div class="role-tokens">
+            <span class="role-token">text-2xl / text-4xl</span>
+            <span class="role-token">font-heading</span>
+            <span class="role-token">font-bold</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Subheading</div>
+          <div class="role-desc">Subtítulos, títulos de componentes</div>
+          <div class="role-tokens">
+            <span class="role-token">text-lg / text-xl</span>
+            <span class="role-token">font-heading</span>
+            <span class="role-token">font-semibold</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Body</div>
+          <div class="role-desc">Texto corrido, parágrafos, descrições</div>
+          <div class="role-tokens">
+            <span class="role-token">text-base / text-lg</span>
+            <span class="role-token">font-sans</span>
+            <span class="role-token">font-regular</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Label / UI</div>
+          <div class="role-desc">Inputs, botões, navegação, tabs</div>
+          <div class="role-tokens">
+            <span class="role-token">text-sm / text-base</span>
+            <span class="role-token">font-sans</span>
+            <span class="role-token">font-medium</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-label">Caption / Helper</div>
+          <div class="role-desc">Mensagens de erro, dicas, metadados</div>
+          <div class="role-tokens">
+            <span class="role-token">text-xs / text-sm</span>
+            <span class="role-token">font-sans</span>
+            <span class="role-token">font-regular</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USAGE PREVIEW -->
+    <div class="section">
+      <div class="section-title">👁️ Preview — Componente Real</div>
+      <div class="usage-preview">
+        <span class="tag-badge">Inovação</span>
+        <div class="card-title">Projeto de Automação Inteligente</div>
+        <div class="card-body">
+          Solução desenvolvida pelo Laboratório de Inovação RF01 para
+          automatizar processos críticos, reduzindo o tempo de execução em até
+          70% com uso de inteligência artificial aplicada.
+        </div>
+        <div class="card-caption">
+          Publicado em 05 Mar 2026 · Equipe Labin01
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-title">🚀 Próximas Etapas</div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="next-icon">📐</div>
+          <div class="next-title">Spacing & Radius</div>
+          <div class="next-desc">
+            Escala 4px, border-radius e elevation tokens
+          </div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">🧩</div>
+          <div class="next-title">Componentes</div>
+          <div class="next-desc">Button, Input, Badge, Card, Modal</div>
+        </div>
+        <div class="next-card">
+          <div class="next-icon">📚</div>
+          <div class="next-title">Storybook</div>
+          <div class="next-desc">Documentação interativa dos componentes</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
