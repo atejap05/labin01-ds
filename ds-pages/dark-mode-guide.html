@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dark Mode Guide — Design System Labin01</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="shared.css" rel="stylesheet" />
     <style>
       :root {
         --font-h: "Plus Jakarta Sans", sans-serif;
-        --font-s: "Inter", sans-serif;
+        --font-body: "Source Sans 3", sans-serif;
         --font-m: "JetBrains Mono", monospace;
         --black: #191d21;
         --white: #f8f9fa;
@@ -87,7 +88,7 @@
       }
 
       body {
-        font-family: var(--font-s);
+        font-family: var(--font-body);
         background: var(--white);
         color: var(--black);
         padding: 48px 32px;
@@ -315,7 +316,7 @@
         padding: 10px 12px;
         border: 1px solid var(--gray200);
         border-radius: 6px;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
         font-size: 14px;
         background: white;
         color: var(--black);
@@ -523,6 +524,18 @@
     </style>
   </head>
   <body>
+    <nav class="ds-nav">
+      <img src="../logo-labin.png" alt="Labin01 Logo" class="ds-nav-logo" />
+      <a href="index.html" class="ds-nav-home">Labin01</a>
+      <div class="ds-nav-links">
+        <a href="colors-schema.html">Colors</a>
+        <a href="typography.html">Typography</a>
+        <a href="spacing-elevation.html">Spacing</a>
+        <a href="components.html">Components</a>
+        <a href="overlays.html">Overlays</a>
+        <a href="dark-mode-guide.html">Dark Mode</a>
+      </div>
+    </nav>
     <div class="ds-header">
       <div class="header-left">
         <div class="label">🌙 Design System</div>

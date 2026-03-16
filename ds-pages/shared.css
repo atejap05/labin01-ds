@@ -1,0 +1,85 @@
+/* Labin01 Design System — Shared styles (frontend-design skill) */
+
+:root {
+  --font-display: "Sora", sans-serif;
+  --font-h: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+  --font-m: "JetBrains Mono", monospace;
+  --primary-500: #1a5a8a;
+  --secondary-500: #21a4b8;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(
+      180deg,
+      rgba(26, 90, 138, 0.03) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(33, 164, 184, 0.04) 100%
+    ),
+    var(--gray50, #f8fafc);
+}
+
+.ds-nav {
+  background: linear-gradient(
+    135deg,
+    var(--primary-500) 0%,
+    var(--secondary-500) 100%
+  );
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ds-nav-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.ds-nav-home {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.ds-nav-home:hover {
+  opacity: 0.9;
+}
+
+.ds-nav-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.ds-nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.ds-nav-links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.section-title {
+  border-bottom: 2px solid var(--secondary-500);
+}
+
+.ds-header h1 {
+  font-family: var(--font-display);
+}

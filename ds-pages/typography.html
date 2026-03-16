@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Typography — Design System Labin01</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="shared.css" rel="stylesheet" />
     <style>
       *,
       *::before,
@@ -30,13 +31,12 @@
         --color-gray-700: #334155;
 
         --font-heading: "Plus Jakarta Sans", sans-serif;
-        --font-sans: "Inter", sans-serif;
+        --font-sans: "Source Sans 3", sans-serif;
         --font-mono: "JetBrains Mono", monospace;
       }
 
       body {
         font-family: var(--font-sans);
-        background: #f8fafc;
         color: var(--color-shade-black);
         padding: 48px 32px;
         max-width: 960px;
@@ -92,7 +92,7 @@
         color: var(--color-secondary-500);
         margin-bottom: 28px;
         padding-bottom: 12px;
-        border-bottom: 2px solid var(--color-gray-100);
+        border-bottom: 2px solid var(--color-secondary-500);
       }
 
       /* Type Scale rows */
@@ -365,6 +365,18 @@
     </style>
   </head>
   <body>
+    <nav class="ds-nav">
+      <img src="../logo-labin.png" alt="Labin01 Logo" class="ds-nav-logo" />
+      <a href="index.html" class="ds-nav-home">Labin01</a>
+      <div class="ds-nav-links">
+        <a href="colors-schema.html">Colors</a>
+        <a href="typography.html">Typography</a>
+        <a href="spacing-elevation.html">Spacing</a>
+        <a href="components.html">Components</a>
+        <a href="overlays.html">Overlays</a>
+        <a href="dark-mode-guide.html">Dark Mode</a>
+      </div>
+    </nav>
     <div class="ds-header">
       <div class="label">
         Design System Labin01 · Laboratório de Inovação RF01

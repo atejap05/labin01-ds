@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design System Labin01 — Laboratório de Inovação RF01</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="shared.css" rel="stylesheet" />
     <style>
       *,
       *::before,
@@ -18,8 +19,9 @@
       }
 
       :root {
+        --font-display: "Sora", sans-serif;
         --font-h: "Plus Jakarta Sans", sans-serif;
-        --font-s: "Inter", sans-serif;
+        --font-body: "Source Sans 3", sans-serif;
         --font-m: "JetBrains Mono", monospace;
         --black: #191d21;
         --white: #f8f9fa;
@@ -42,8 +44,15 @@
       }
 
       body {
-        font-family: var(--font-s);
-        background: var(--gray50);
+        font-family: var(--font-body);
+        background: linear-gradient(
+            180deg,
+            rgba(26, 90, 138, 0.03) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(33, 164, 184, 0.04) 100%
+          ),
+          var(--gray50);
         color: var(--black);
         padding: 48px 32px;
         max-width: 980px;
@@ -62,28 +71,38 @@
         color: white;
         margin-bottom: 48px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .hero-logo {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
       }
       .hero .version {
+        font-family: var(--font-m);
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 600;
         letter-spacing: 0.15em;
         text-transform: uppercase;
-        opacity: 0.8;
-        margin-bottom: 12px;
+        opacity: 0.85;
       }
       .hero h1 {
-        font-family: var(--font-h);
+        font-family: var(--font-display);
         font-size: 42px;
         font-weight: 800;
         letter-spacing: -0.02em;
-        margin-bottom: 12px;
+        margin: 0;
       }
       .hero .subtitle {
+        font-family: var(--font-body);
         font-size: 18px;
-        opacity: 0.9;
+        opacity: 0.92;
         line-height: 1.5;
         max-width: 560px;
-        margin: 0 auto;
+        margin: 0;
       }
 
       /* Section */
@@ -102,7 +121,7 @@
         color: var(--secondary-500);
         margin-bottom: 24px;
         padding-bottom: 12px;
-        border-bottom: 2px solid var(--gray100);
+        border-bottom: 2px solid var(--secondary-500);
       }
 
       /* Foundation & Component grids */
@@ -119,12 +138,38 @@
         border-radius: 12px;
         overflow: hidden;
         transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
+          border-color 0.2s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s ease;
+        opacity: 0;
+        animation: cardReveal 0.5s ease forwards;
+      }
+      .card-link:nth-child(1) { animation-delay: 0.05s; }
+      .card-link:nth-child(2) { animation-delay: 0.1s; }
+      .card-link:nth-child(3) { animation-delay: 0.15s; }
+      .card-link:nth-child(4) { animation-delay: 0.2s; }
+      .card-link:nth-child(5) { animation-delay: 0.25s; }
+      .card-link:nth-child(6) { animation-delay: 0.3s; }
+      .card-link:nth-child(7) { animation-delay: 0.35s; }
+      .card-link:nth-child(8) { animation-delay: 0.4s; }
+      @keyframes cardReveal {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .card-link:hover {
         border-color: var(--primary-300);
-        box-shadow: 0 4px 12px rgba(26, 90, 138, 0.15);
+        box-shadow: 0 8px 24px rgba(26, 90, 138, 0.18);
+        transform: translateY(-2px);
+      }
+      .card-link:focus-visible {
+        outline: 2px solid var(--secondary-500);
+        outline-offset: 2px;
       }
       .card-preview {
         height: 100px;
@@ -169,7 +214,7 @@
         font-weight: 600;
         border-radius: 6px;
         border: none;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
       }
       .mini-btn-primary {
         background: var(--primary-500);
@@ -209,10 +254,11 @@
         line-height: 1.4;
       }
 
-      /* Design principles */
+      /* Design principles — asymmetric layout */
       .principles-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
         gap: 16px;
       }
       .principle-card {
@@ -220,6 +266,28 @@
         border: 1px solid var(--gray200);
         border-radius: 10px;
         background: white;
+      }
+      .principle-card.featured {
+        grid-column: 1 / -1;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 90, 138, 0.04) 0%,
+          rgba(33, 164, 184, 0.06) 100%
+        );
+        border-color: var(--primary-100);
+        padding: 24px 28px;
+      }
+      .principle-card.featured .principle-title {
+        color: var(--primary-500);
+      }
+      @media (min-width: 640px) {
+        .principles-grid {
+          grid-template-columns: 1.2fr 1fr;
+        }
+        .principle-card.featured {
+          grid-column: 1;
+          grid-row: 1 / 3;
+        }
       }
       .principle-icon {
         font-size: 28px;
@@ -295,8 +363,21 @@
     </style>
   </head>
   <body>
+    <nav class="ds-nav">
+      <img src="../logo-labin.png" alt="Labin01 Logo" class="ds-nav-logo" />
+      <a href="index.html" class="ds-nav-home">Labin01</a>
+      <div class="ds-nav-links">
+        <a href="colors-schema.html">Colors</a>
+        <a href="typography.html">Typography</a>
+        <a href="spacing-elevation.html">Spacing</a>
+        <a href="components.html">Components</a>
+        <a href="overlays.html">Overlays</a>
+        <a href="dark-mode-guide.html">Dark Mode</a>
+      </div>
+    </nav>
     <!-- HERO -->
     <div class="hero">
+      <img src="../logo-labin.png" alt="Labin01" class="hero-logo" />
       <div class="version">Design System v1.0</div>
       <h1>Labin01</h1>
       <p class="subtitle">
@@ -383,7 +464,7 @@
     <div class="section">
       <div class="section-title">Design Principles</div>
       <div class="principles-grid">
-        <div class="principle-card">
+        <div class="principle-card featured">
           <div class="principle-icon">◐</div>
           <div class="principle-title">Consistência</div>
           <div class="principle-desc">
@@ -438,8 +519,8 @@
             <td>Plus Jakarta Sans</td>
           </tr>
           <tr>
-            <td><span class="ref-token">font-sans</span></td>
-            <td>Inter</td>
+            <td><span class="ref-token">font-body</span></td>
+            <td>Source Sans 3</td>
           </tr>
           <tr>
             <td><span class="ref-token">font-mono</span></td>

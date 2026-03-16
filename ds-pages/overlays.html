@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Overlays — Design System Labin01</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="shared.css" rel="stylesheet" />
     <style>
       *,
       *::before,
@@ -19,7 +20,7 @@
 
       :root {
         --font-h: "Plus Jakarta Sans", sans-serif;
-        --font-s: "Inter", sans-serif;
+        --font-body: "Source Sans 3", sans-serif;
         --font-m: "JetBrains Mono", monospace;
         --black: #191d21;
         --white: #f8f9fa;
@@ -50,8 +51,7 @@
       }
 
       body {
-        font-family: var(--font-s);
-        background: var(--gray50);
+        font-family: var(--font-body);
         color: var(--black);
         padding: 48px 32px;
         max-width: 980px;
@@ -104,14 +104,14 @@
         color: var(--secondary-500);
         margin-bottom: 28px;
         padding-bottom: 12px;
-        border-bottom: 2px solid var(--gray100);
+        border-bottom: 2px solid var(--secondary-500);
       }
 
       /* Modal preview (static) */
       .modal-preview-wrap {
         position: relative;
         min-height: 320px;
-        background: rgba(25, 29, 33, 0.5);
+        background: rgba(25, 29, 33, 0.6);
         border-radius: var(--radius-lg);
         display: flex;
         align-items: center;
@@ -162,7 +162,15 @@
         font-weight: 600;
         border: none;
         cursor: pointer;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
+        transition: background 0.2s, transform 0.2s;
+      }
+      .modal-btn:hover {
+        transform: translateY(-1px);
+      }
+      .modal-btn:focus-visible {
+        outline: 2px solid var(--secondary-500);
+        outline-offset: 2px;
       }
       .modal-btn-primary {
         background: var(--primary-500);
@@ -213,7 +221,15 @@
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
+        transition: background 0.2s, transform 0.2s;
+      }
+      .tooltip-trigger:hover {
+        background: var(--primary-400);
+      }
+      .tooltip-trigger:focus-visible {
+        outline: 2px solid var(--secondary-500);
+        outline-offset: 2px;
       }
       .tooltip-bubble {
         position: absolute;
@@ -225,6 +241,13 @@
         white-space: nowrap;
         box-shadow: var(--shadow-lg);
         z-index: 10;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .tooltip-demo:hover .tooltip-bubble,
+      .tooltip-demo:focus-within .tooltip-bubble {
+        opacity: 1;
       }
       .tooltip-bubble::after {
         content: "";
@@ -234,8 +257,12 @@
       .tooltip-top .tooltip-bubble {
         bottom: 100%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(4px);
         margin-bottom: 8px;
+      }
+      .tooltip-top:hover .tooltip-bubble,
+      .tooltip-top:focus-within .tooltip-bubble {
+        transform: translateX(-50%) translateY(0);
       }
       .tooltip-top .tooltip-bubble::after {
         top: 100%;
@@ -246,8 +273,12 @@
       .tooltip-right .tooltip-bubble {
         left: 100%;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) translateX(4px);
         margin-left: 8px;
+      }
+      .tooltip-right:hover .tooltip-bubble,
+      .tooltip-right:focus-within .tooltip-bubble {
+        transform: translateY(-50%) translateX(0);
       }
       .tooltip-right .tooltip-bubble::after {
         right: 100%;
@@ -258,8 +289,12 @@
       .tooltip-bottom .tooltip-bubble {
         top: 100%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(-4px);
         margin-top: 8px;
+      }
+      .tooltip-bottom:hover .tooltip-bubble,
+      .tooltip-bottom:focus-within .tooltip-bubble {
+        transform: translateX(-50%) translateY(0);
       }
       .tooltip-bottom .tooltip-bubble::after {
         bottom: 100%;
@@ -270,8 +305,12 @@
       .tooltip-left .tooltip-bubble {
         right: 100%;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) translateX(-4px);
         margin-right: 8px;
+      }
+      .tooltip-left:hover .tooltip-bubble,
+      .tooltip-left:focus-within .tooltip-bubble {
+        transform: translateY(-50%) translateX(0);
       }
       .tooltip-left .tooltip-bubble::after {
         left: 100%;
@@ -324,7 +363,7 @@
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
       }
 
       /* Toast */
@@ -342,7 +381,7 @@
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-lg);
         font-size: 14px;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
       }
       .toast-icon { font-size: 18px; flex-shrink: 0; }
       .toast-content { flex: 1; }
@@ -436,6 +475,18 @@
     </style>
   </head>
   <body>
+    <nav class="ds-nav">
+      <img src="../logo-labin.png" alt="Labin01 Logo" class="ds-nav-logo" />
+      <a href="index.html" class="ds-nav-home">Labin01</a>
+      <div class="ds-nav-links">
+        <a href="colors-schema.html">Colors</a>
+        <a href="typography.html">Typography</a>
+        <a href="spacing-elevation.html">Spacing</a>
+        <a href="components.html">Components</a>
+        <a href="overlays.html">Overlays</a>
+        <a href="dark-mode-guide.html">Dark Mode</a>
+      </div>
+    </nav>
     <div class="ds-header">
       <div class="label">Design System Labin01 · Laboratório de Inovação RF01</div>
       <h1>Overlays</h1>

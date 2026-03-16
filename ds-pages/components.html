@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Components — Design System Labin01</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="shared.css" rel="stylesheet" />
     <style>
       *,
       *::before,
@@ -19,7 +20,7 @@
 
       :root {
         --font-h: "Plus Jakarta Sans", sans-serif;
-        --font-s: "Inter", sans-serif;
+        --font-body: "Source Sans 3", sans-serif;
         --font-m: "JetBrains Mono", monospace;
         --black: #191d21;
         --white: #f8f9fa;
@@ -56,8 +57,7 @@
       }
 
       body {
-        font-family: var(--font-s);
-        background: var(--gray50);
+        font-family: var(--font-body);
         color: var(--black);
         padding: 48px 32px;
         max-width: 980px;
@@ -110,17 +110,25 @@
         color: var(--secondary-500);
         margin-bottom: 28px;
         padding-bottom: 12px;
-        border-bottom: 2px solid var(--gray100);
+        border-bottom: 2px solid var(--secondary-500);
       }
 
       /* Buttons */
       .btn {
-        font-family: var(--font-s);
+        font-family: var(--font-body);
         font-weight: 600;
         border: none;
         cursor: pointer;
         border-radius: var(--radius-md);
-        transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+        transition: background 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      }
+      .btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 90, 138, 0.2);
+      }
+      .btn:focus-visible {
+        outline: 2px solid var(--secondary-500);
+        outline-offset: 2px;
       }
       .btn:disabled {
         cursor: not-allowed;
@@ -184,6 +192,61 @@
         letter-spacing: 0.05em;
       }
 
+      /* Context preview */
+      .context-header {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding: 16px 20px;
+        background: white;
+        border: 1px solid var(--gray200);
+        border-radius: var(--radius-lg);
+      }
+      .context-header-brand {
+        font-family: var(--font-h);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-500);
+      }
+      .context-header-search {
+        position: relative;
+        flex: 1;
+        min-width: 200px;
+      }
+      .context-header-search .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+      }
+      .context-header-search .input {
+        padding-left: 36px;
+      }
+      .context-header-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .context-dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .context-dashboard .card-simple {
+        border: 1px solid var(--gray200);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        background: white;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .context-dashboard .card-simple:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(25, 29, 33, 0.12);
+      }
+
       /* Inputs */
       .input-wrap {
         margin-bottom: 20px;
@@ -199,7 +262,7 @@
       .input {
         width: 100%;
         padding: 10px 14px;
-        font-family: var(--font-s);
+        font-family: var(--font-body);
         font-size: 14px;
         border: 1.5px solid var(--primary-100);
         border-radius: var(--radius-md);
@@ -210,6 +273,9 @@
         outline: none;
         border-color: var(--secondary-500);
         box-shadow: 0 0 0 3px rgba(33, 164, 184, 0.2);
+      }
+      .input:focus-visible {
+        box-shadow: 0 0 0 3px rgba(33, 164, 184, 0.35);
       }
       .input::placeholder { color: var(--gray500); }
       .input.input-error {
@@ -287,6 +353,15 @@
         overflow: hidden;
         background: white;
         box-shadow: var(--shadow-sm);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(25, 29, 33, 0.12);
+      }
+      .card:focus-within {
+        outline: 2px solid var(--secondary-500);
+        outline-offset: 2px;
       }
       .card-header {
         padding: 16px 20px;
@@ -408,6 +483,18 @@
     </style>
   </head>
   <body>
+    <nav class="ds-nav">
+      <img src="../logo-labin.png" alt="Labin01 Logo" class="ds-nav-logo" />
+      <a href="index.html" class="ds-nav-home">Labin01</a>
+      <div class="ds-nav-links">
+        <a href="colors-schema.html">Colors</a>
+        <a href="typography.html">Typography</a>
+        <a href="spacing-elevation.html">Spacing</a>
+        <a href="components.html">Components</a>
+        <a href="overlays.html">Overlays</a>
+        <a href="dark-mode-guide.html">Dark Mode</a>
+      </div>
+    </nav>
     <div class="ds-header">
       <div class="label">Design System Labin01 · Laboratório de Inovação RF01</div>
       <h1>Components</h1>
@@ -415,6 +502,58 @@
         Botões, inputs, badges, cards e alerts — componentes essenciais usando
         os tokens de cor, tipografia e spacing.
       </p>
+    </div>
+
+    <!-- CONTEXT PREVIEW: Header fictício -->
+    <div class="section">
+      <div class="section-title">Preview em Contexto — Barra de Ações</div>
+      <div class="context-header">
+        <div class="context-header-brand">Labin01</div>
+        <div class="context-header-search">
+          <span class="input-icon">🔍</span>
+          <input type="text" class="input input-filled" placeholder="Buscar projetos..." style="max-width: 240px;" />
+        </div>
+        <div class="context-header-actions">
+          <button class="btn btn-ghost btn-md">Documentação</button>
+          <button class="btn btn-outline btn-md">Entrar</button>
+          <button class="btn btn-primary btn-md">Criar projeto</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXT PREVIEW: Dashboard mínimo -->
+    <div class="section">
+      <div class="section-title">Preview em Contexto — Dashboard</div>
+      <div class="context-dashboard">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag">Métricas</span>
+            <div class="card-title">Projetos ativos</div>
+            <div class="card-subtitle">12 em andamento</div>
+          </div>
+          <div class="card-body">
+            <div class="card-actions">
+              <button class="btn btn-primary btn-sm">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag">Inovação</span>
+            <div class="card-title">Ideias aprovadas</div>
+            <div class="card-subtitle">5 este mês</div>
+          </div>
+          <div class="card-body">
+            <div class="card-actions">
+              <button class="btn btn-outline btn-sm">Explorar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-simple">
+          <div class="card-title">Próxima reunião</div>
+          <div class="card-text">Sprint Review — Sexta 14h</div>
+        </div>
+      </div>
     </div>
 
     <!-- BUTTONS -->
