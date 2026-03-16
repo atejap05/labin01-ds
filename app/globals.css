@@ -53,9 +53,10 @@
   --color-gray-500: #64748b;
   --color-gray-700: #334155;
 
-  /* ── Font Families ── */
+  /* ── Font Families (identidade Labin01 — ver docs/DESIGN_DIRECTION.md) ── */
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* ── Font Sizes ── */
@@ -282,5 +283,10 @@ html.dark {
   h5,
   h6 {
     font-family: var(--font-heading);
+  }
+
+  /* Display: hero, headlines de destaque (opcional: usar font-display em h1) */
+  h1 {
+    font-family: var(--font-display);
   }
 }

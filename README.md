@@ -25,6 +25,7 @@ labin01-ds/
 │   └── theme-provider.ts           # Theme Provider (React) + Hooks
 │
 ├── 📂 ds-pages/                    # Documentação Visual (HTML)
+│   ├── shared.css                  # Estilos compartilhados (header, fundo, fontes)
 │   ├── index.html                  # Hub principal
 │   ├── colors-schema.html          # Paletas, contraste WCAG
 │   ├── typography.html             # Tipografia & escalas
@@ -35,6 +36,7 @@ labin01-ds/
 │
 ├── 📂 docs/                        # Documentação Técnica
 │   ├── README.md                   # Quick Start & Índice
+│   ├── DESIGN_DIRECTION.md         # Direção estética (identidade visual ds-pages)
 │   ├── DARK_MODE_IMPLEMENTATION.md # Arquitetura técnica completa
 │   ├── COLOR_MAPPING.json          # Matriz de cores (50+)
 │   ├── COMPONENT_GENERATION.md     # Guia do gerador React
@@ -55,7 +57,8 @@ labin01-ds/
 
 ```bash
 # Abrir no navegador (sem dependencies)
-file:///seu/caminho/labin01-ds/index.html
+# O hub principal está em ds-pages/
+file:///seu/caminho/labin01-ds/ds-pages/index.html
 
 # OU com servidor local (recomendado)
 npx serve .   # Node.js
@@ -63,7 +66,7 @@ npx serve .   # Node.js
 python -m http.server 8080  # Python
 ```
 
-Acesse: `http://localhost:3000` (ou `http://localhost:8080`)
+Acesse: `http://localhost:3000/ds-pages/` (ou `http://localhost:8080/ds-pages/`)
 
 ### Para usar em Next.js 15 + React 19
 
@@ -117,6 +120,7 @@ export function MyComponent() {
 | Doc                                    | Propósito                    | Para quem       |
 | -------------------------------------- | ---------------------------- | --------------- |
 | **`docs/README.md`**                   | Quick start & índice         | Todos           |
+| **`docs/DESIGN_DIRECTION.md`**         | Direção estética ds-pages    | Designers       |
 | **`docs/DARK_MODE_IMPLEMENTATION.md`** | Arquitetura técnica completa | Devs/Arquitetos |
 | **`docs/COLOR_MAPPING.json`**          | Matriz de 50+ cores          | Designers/Devs  |
 | **`docs/COMPONENT_GENERATION.md`**     | Gerador React                | Devs            |
@@ -228,9 +232,23 @@ cp ../labin01-ds/app/theme-provider.ts ./app/
 
 ```tsx
 import { ThemeProvider } from "./theme-provider";
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import {
+  Sora,
+  Source_Sans_3,
+  Plus_Jakarta_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800"],
+});
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+});
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -248,7 +266,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${jakarta.variable} ${jetbrains.variable}`}
+      className={`${sora.variable} ${sourceSans.variable} ${jakarta.variable} ${jetbrains.variable}`}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
@@ -299,8 +317,9 @@ Para mais detalhes, veja `TAILWIND_SETUP.md`
 
 | Token            | Valor             |
 | ---------------- | ----------------- |
+| **font-display** | Sora              |
 | **font-heading** | Plus Jakarta Sans |
-| **font-sans**    | Inter             |
+| **font-sans**    | Source Sans 3     |
 | **font-mono**    | JetBrains Mono    |
 
 ### Espaçamento
@@ -335,6 +354,7 @@ Escala baseada em **4px**: 0, 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px
 
 ### Para Designers
 
+- 📐 `docs/DESIGN_DIRECTION.md` — Direção estética e identidade visual
 - 🎨 `ds-pages/colors-schema.html` — Paleta completa com WCAG
 - ✍️ `ds-pages/typography.html` — Tipografia aplicada
 - 📏 `ds-pages/spacing-elevation.html` — Espacamento e sombras
@@ -369,6 +389,14 @@ Escala baseada em **4px**: 0, 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px
 - **Clareza** — Hierarquia visual clara e feedback imediato
 - **Inclusão** — Suporte a light/dark mode, temas customizáveis (future)
 
+### Identidade visual da documentação (ds-pages)
+
+As páginas de documentação em `ds-pages/` seguem uma identidade visual própria, documentada em `docs/DESIGN_DIRECTION.md`:
+
+- **Tom**: Refinado + Tech — preciso, técnico, confiável
+- **Tipografia**: Sora (display), Plus Jakarta Sans (heading), Source Sans 3 (body)
+- **Assinatura**: Gradiente primary→secondary 135°, bordas em cor de acento, microinterações em hover
+
 ---
 
 ## ✅ Requisitos
@@ -392,12 +420,13 @@ Escala baseada em **4px**: 0, 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px
 
 ### P: Como vejo as páginas HTML?
 
-**R**: Abra no navegador ou com servidor local:
+**R**: O hub principal está em `ds-pages/index.html`. Abra no navegador ou com servidor local:
 
 ```bash
 npx serve .
 # ou
 python -m http.server 8080
+# Depois acesse: http://localhost:3000/ds-pages/ (ou :8080/ds-pages/)
 ```
 
 ### P: Dark mode não está funcionando
@@ -448,6 +477,7 @@ node scripts/generate-react-component.js Input
 
 ### Documentação Oficial
 
+- 📐 **Identidade Visual**: `docs/DESIGN_DIRECTION.md`
 - 📘 **Quick Start**: `docs/README.md`
 - 🏗️ **Arquitetura**: `docs/DARK_MODE_IMPLEMENTATION.md`
 - 📊 **Cores**: `docs/COLOR_MAPPING.json`
@@ -488,7 +518,7 @@ node scripts/generate-react-component.js Input
 
 ## 🚀 Próximos Passos
 
-1. **Explore** — Abra `ds-pages/index.html` no navegador
+1. **Explore** — Abra `ds-pages/index.html` no navegador (hub com identidade visual própria)
 2. **Customize** — Copie arquivos para seu projeto
 3. **Integre** — Siga `docs/README.md`
 4. **Valide** — Use `docs/VALIDATION_CHECKLIST.md`

@@ -8,12 +8,13 @@ Configuração para **React 19**, **Next.js 15** e **Tailwind CSS v4**.
 npm install tailwindcss @tailwindcss/postcss postcss
 ```
 
-## Arquivos criados
+## Arquivos para projetos consumidores
 
-| Arquivo              | Descrição                                     |
-| -------------------- | --------------------------------------------- |
-| `postcss.config.mjs` | Configuração PostCSS (Next.js usa por padrão) |
-| `app/globals.css`    | Tema Labin01 com `@theme` e tokens            |
+| Arquivo                  | Descrição                                              |
+| ------------------------ | ------------------------------------------------------ |
+| `postcss.config.mjs`     | Configuração PostCSS (Next.js usa por padrão)          |
+| `app/globals.css`        | Tema Labin01 com `@theme`, tokens e fontes (Sora, Source Sans 3) |
+| `app/theme-provider.ts`  | Provider React para Dark Mode (detecção + toggle)      |
 
 ## Setup em projeto Next.js 15
 
@@ -51,14 +52,28 @@ Copie o conteúdo de `app/globals.css` deste repositório ou importe o tema:
 @import "./theme-labin01.css"; /* opcional: tema em arquivo separado */
 ```
 
-### 5. Fontes (Google Fonts)
+### 5. Fontes (identidade Labin01 — Sora, Source Sans 3, Plus Jakarta Sans)
 
 Adicione em `app/layout.tsx`:
 
 ```tsx
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import {
+  Sora,
+  Source_Sans_3,
+  Plus_Jakarta_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800"],
+});
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+});
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -72,7 +87,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${jakarta.variable} ${jetbrains.variable}`}
+      className={`${sora.variable} ${sourceSans.variable} ${jakarta.variable} ${jetbrains.variable}`}
     >
       <body>{children}</body>
     </html>
@@ -88,7 +103,8 @@ export default function RootLayout({ children }) {
 <div className="bg-success-50 text-success-500" />
 
 // Tipografia
-<h1 className="font-heading text-2xl font-bold" />
+<h1 className="font-display text-2xl font-bold" />
+<h2 className="font-heading text-xl font-semibold" />
 <p className="font-sans text-base text-gray-700" />
 <code className="font-mono text-sm" />
 

@@ -63,6 +63,7 @@ Documento de identidade visual para as páginas de documentação (`ds-pages/`),
 ## 6. Restrições
 
 - Manter todos os tokens existentes (cores, spacing, radius, shadow) em `app/globals.css`.
+- **app/globals.css** inclui as mesmas fontes (Sora, Source Sans 3) para projetos que consomem o DS — ver `TAILWIND_SETUP.md` e `README.md`.
 - Acessibilidade WCAG AA mínimo; contraste e foco visível em todos os estados.
 - HTML/CSS puro nas ds-pages; sem dependência de React.
 - Logo `logo-labin.png` integrado no hero e header.
